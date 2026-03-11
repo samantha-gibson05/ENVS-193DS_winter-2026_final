@@ -31,8 +31,7 @@ What statistical tests did your co-worker use?
 
 Clearly connect the test to the part that you are addressing (e.g. “In part 1, they used _______. In part 2, they used _______.”).
 
-In **part 1**, they most likely used a simple linear regression ($H_0$: the predictors does not predict outcome; $H_A$: the predictor variables predicts outcome) because the statement asks whether precipitation predicts flooded wetland area, which is a continuous response variable. In **part 2**, they most likely used a Kruskal–Wallis rank-sum test ($H_0$: sample 1 median = sample 2 median = sample 3 median ....;
-$H_A$: at least 2 sample medians are different form each other), because the statement compares median flooded wetland area across more than two groups of water year classification (wet, above normal, below normal, dry, critical drought).
+In **part 1**, they most likely used a simple linear regression ($H_0$:  the predictor variable does not predict the response; $H_A$: the predictor variable does predict the response) because the statement asks whether precipitation predicts flooded wetland area, which is a continuous response variable. In **part 2**, they most likely used a Kruskal–Wallis rank-sum test ($H_0$: sample 1 median = sample 2 median = sample 3 median ....; $H_A$: at least 2 sample medians are different form each other), because the statement compares median flooded wetland area across more than two groups of water year classification (wet, above normal, below normal, dry, critical drought).
 
 ## b. Figure needed
 
@@ -52,6 +51,9 @@ Be sure that your rewritten statements clearly delineate the *biological narrati
 
 Note that your co-worker didn’t include any information about the test statistic, distribution, etc., and that you only know the p-value. For any part that you do not know, list that part with text. For example, you could write something like: “… $\alpha$**=significance level**…”
 
+**Part 1**: Flooded wetland area did not show clear evidence of a relationship with precipitation in this analysis. The statistical test did not provide sufficient evidence to reject the null hypothesis of no association between precipitation and flooded wetland area (Linear regression, F(degrees freedom, degrees freedom) =  test-statistic (F), $R^2$ = R-squared, p = 0.11, $\alpha$ = significance level).
+
+**Part 2**: Median flooded wetland area did not differ significantly among water year classifications (wet, above normal, below normal, dry, critical drought). The statistical test did not provide sufficient evidence to reject the null hypothesis that median flooded wetland area was the same across wet, above normal, below normal, dry, and critical drought years (Kruskal–Wallis test, $\chi^2$(degrees of freedom) = test-statistic (H), p = 0.12, $\alpha$ = significance level)
 
 ## d. Interpretation
 
