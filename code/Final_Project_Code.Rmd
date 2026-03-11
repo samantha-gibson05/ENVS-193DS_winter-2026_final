@@ -29,11 +29,7 @@ It’s great that this report is coming together, but you think they can improve
 
 What statistical tests did your co-worker use?
 
-xxx
-
-Clearly connect the test to the part that you are addressing (e.g. “In part 1, they used _______. In part 2, they used _______.”).
-
-xxx
+In **part 1**, they most likely used a simple linear regression ($H_0$: the predictors does not predict outcome; $H_A$: the predictor variables predicts outcome) because the statement asks whether precipitation predicts flooded wetland area, which is a continuous response variable. In **part 2**, they most likely used a Kruskal–Wallis rank-sum test, because the statement compares median flooded wetland area across more than two groups of water year classification (wet, above normal, below normal, dry, critical drought).
 
 ## b. Figure needed
 
