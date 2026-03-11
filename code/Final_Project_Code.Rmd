@@ -1,0 +1,334 @@
+---
+title: "Final_Project_Code"
+author: "Sami Gibson"
+date: "`r Sys.Date()`"
+format:
+  html:
+    toc: true # use this to display a table of contents
+execute:
+  message: false # use this to make sure messages don't show up
+  warning: false # use this to make sure warnings don't show upl
+---
+# Set-up
+```{r setup}
+suppressPackageStartupMessages({})
+
+```
+
+[Here is my GitHub Repository](https://github.com/samantha-gibson05/ENVS-193DS_winter-2026_final.git)
+
+# Problem 1. Research writing
+
+You’re working on a research team trying to understand how environmental variables influence wetland flooding area (measured in $m^2$) in the San Joaquin River Delta. Your co-worker runs some analyses and writes up a report, giving it to you to review. In part 1 of the results section of the report, your co-worker has written: *We retained the null hypothesis that precipitation doesn’t predict flooded wetland area (p = 0.11).*
+
+In part 2 of the results section of the report, your co-worker has written: *We retained the null hypothesis that median flooded wetland area does not differ across water year classification (wet, above normal, below normal, dry, critical drought) (p = 0.12).*
+
+It’s great that this report is coming together, but you think they can improve on what they’ve written and make it more understandable to a non-statistical audience.
+
+## a. Transparent statistical methods
+
+What statistical tests did your co-worker use?
+
+xxx
+
+Clearly connect the test to the part that you are addressing (e.g. “In part 1, they used _______. In part 2, they used _______.”).
+
+xxx
+
+## b. Figure needed
+
+The test in part 2 seems familiar to you, but you think your coworker could provide additional context using a visualization for their test.
+
+Describe one figure that your coworker could make to accompany the statement in part 2.
+
+Be specific about what variables should be on the x-axis, the y-axis, and the visual components of the plot as they relate to the test in *addition* to naming the type of plot they should make.
+
+xxx
+
+## c. Suggestions for rewriting
+
+In 1-3 sentences, write *new research statements* to include relevant components from parts a-b and a full test summary in parentheses to be transparent about the statistical method.
+
+Be sure that your rewritten statements clearly delineate the *biological narrative* from the s*tatistical summary*. See lecture and workshop for examples of writing.
+
+Note that your co-worker didn’t include any information about the test statistic, distribution, etc., and that you only know the p-value. For any part that you do not know, list that part with text. For example, you could write something like: “… $\alpha$**=significance level**…”
+
+xxx
+
+## d. Interpretation
+
+Based on your co-worker’s analyses, flooded wetland area isn’t affected by precipitation or by the classification of the water year.
+
+In 1-2 sentences, outline:
+
+- one additional variable that could influence the flooded area of a wetland,
+- what *type* of variable it is, and
+- *why* that variable might influence wetland flooding.
+
+xxx
+
+# Problem 2. Data visualization
+
+Navigate to the SBC LTER’s data catalog. Find and download the dataset on giant kelp fronds in the Santa Barbara Channel to your `data` folder. (Hint: the page on the data catalog is called “KFCD abundance and size of giant kelp”.)
+
+In your set up chunk, read in the data as an object called `kelp`.
+
+## a. Cleaning and summarizing
+
+Create an object called `kelp_clean` from `kelp`.
+
+To clean and summarize the data frame, use the functions in the following code chunk. *Only use these functions*.
+
+The functions are out of order. Put the functions in the right order and use the pipe operator to get the data frame you need.
+
+Annotate each function to demonstrate your understanding of its use.
+
+When you are done with all your cleaning steps:
+
+- display 5 rows from `kelp_clean` using `slice_sample()` and
+- the structure using `str()`
+
+```{r}
+# function 1
+filter(!(date == "2000-09-22" & transect == "6" & quad == "40"))
+
+# function 2
+mutate(site_name = as_factor(site_name),
+       site_name = fct_relevel(site_name,
+                               "Naples", "Isla Vista", "Carpinteria"))
+
+# function 3
+clean_names()
+
+# function 4
+ungroup()
+
+# function 5
+group_by(site_name, year)
+
+# function 6
+filter(site %in% c("IVEE", "NAPL", "CARP"))
+
+# function 7
+summarize(mean_fronds = mean(fronds))
+
+# function 8
+mutate(site_name = case_when(
+  site == "NAPL" ~ "Naples",
+  site == "IVEE" ~ "Isla Vista",
+  site == "CARP" ~ "Carpinteria"
+))
+```
+
+## b. Understanding the data
+
+The code chunk above includes a line that filters out frond observations from the date `2000-09-22` in transect 6 in quad 40.
+
+In 1-2 sentences, describe why. What is the number for the value of fronds in that “quad” in that “transect”? What does that value represent? Reference the specific place you found information on what that value represents (e.g. in the Summary tab of the data page).
+
+xxx
+
+## c. Visualize the data
+
+Recreate the visualization
+
+The specific aesthetic components you need to recreate are:
+
+- the geometries (there are two)
+- the text (all axis and legend text, and the title)
+- different, custom colors for each site
+- the legend position inside the panel
+- the title position
+- the panel (a grid without the border)
+- use of a custom font (that is consistent across all text in the figure)
+
+```{r}
+
+```
+
+
+## d. Interpretation
+
+*Be specific* with the visual components of the plot to support your characterization.
+
+In 1-2 sentences each, describe:
+
+- the site with the most variable mean kelp fronds per year
+
+xxx
+
+- the site with the least variable mean kelp fronds per year
+
+xxx
+
+
+
+
+# Problem 3. Data analysis
+
+Read in your data in the set up chunk, storing it as a new object called `mopl`.
+
+Do any exploring you need to do (exploratory visualizations, etc.) but DO NOT include any code or output from your data exploration.
+
+Note that you may have some cleaning/wrangling steps to do. Do them before running your models!
+
+## a. Response variable
+
+In 1-2 sentences, explain what the 1s and 0s mean in this data set biologically.
+
+xxx
+
+## b. Purpose of study
+
+In this problem, you will be examining the potential effects of visual obstruction and distance to prairie dog colony edge on the probability of a nest site being occupied by a Mountain Plover.
+
+In 2-3 sentences for each predictor, describe:
+
+- what kind of variable it is (i.e. continuous, discrete, categorical, etc.),
+- how it could possibly influence the probability of Mountain Plover nest site use (i.e. as visual obstruction increases, the probability of Mountain Plover nest site use would ______________ because…), and
+- where in the paper you found this information (the specific section, subsection, and paragraph)
+
+xxx
+
+## c. Table of models
+
+Make a table of all the models you will need to run. You will run 4 models: a null model, a saturated model, and two other models with different combinations of predictors.
+
+Your table should have 4 columns: (1) model number, (2) visual obstruction, (3) distance to prairie dog colony, and (4) model description.
+
+```{r}
+
+```
+
+
+## d. Run the models
+
+Write your code to run all your models. Do not display any output.
+
+```{r}
+
+```
+
+
+## e. Select the best model
+
+Using Akaike’s Information Criterion (AIC), choose the best model.
+
+```{r}
+
+```
+
+In text, write what the best model was (i.e. “The best model as determined by Akaike’s Information Criterion (AIC)…”).
+
+**Use the predictors and the response variable to describe the model**, not the model number that you assigned.
+
+xxx
+
+## f. Check the diagnostics
+Check your diagnostics for the model you selected using simulated residuals from the `DHARMa` package.
+
+Display all code and output.
+
+```{r}
+
+```
+
+## g. Visualize the model predictions
+
+Create a plot showing model predictions *for your selected model* with 95% confidence intervals around the predictions and the underlying data.
+
+Show and annotate all code. Show the output.
+
+For full credit:
+
+- make sure the x- and y-axis labels are written in full with units if necessary
+- take out the gridlines
+- use colors that are different from the default
+
+```{r}
+
+```
+
+## h. Write a caption for your figure.
+
+Include a figure number, title, description of the figure, and data citation.
+
+**Figure 1. ** xxx
+
+## i. Calculate model predictions
+
+Calculate the predicted probability of Mountain Plover nest site occupancy at 0 on the index of visual obstruction.
+
+Show and annotate all code. Display the output.
+
+## j. Interpret your results
+
+Write 3-5 sentences summarizing what you found, making references to the figure you made in part h and the predictions you calculated in part j. Your summary should include your interpretation of:
+
+- the predicted probability of nest site occupancy at 0 (no visual obstruction)
+- what relationships, if any, exist between visual obstruction and distance to prairie dog colony and probability of occupancy
+- the biology behind the trends you found - what explains the relationship between visual obstruction and probability of Mountain Plover nest site occupancy?
+
+# Problem 4. Affective and exploratory visualizations
+## a. Comparing visualizations
+
+
+Compare and contrast your affective visualization from Homework 3 and the exploratory visualizations you made for Homework 2. In 1-3 sentences each, explain:
+
+- How are the visualizations different from each other in the way you have represented your data?
+- What similarities do you see between all your visualizations?
+- What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?
+- What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
+
+xxx
+
+xxx
+
+## b. Designing an analysis
+Based on your response variable and one of your potential predictor variables (your focal variable or otherwise), propose one analysis that we talked about this quarter that you could apply to answer your research question(s).
+
+Additionally, explain *why* this analysis is appropriate with regard to:
+
+- your question
+- your variables and what *types* of variables they are
+
+## c. Check any assumptions and run your analysis
+In this section, create two subsections (in the appropriate order) to:
+
+- check any assumptions
+- run the analysis you proposed in part b
+- (if applicable) calculate an effect size
+
+Show all code and output.
+
+## d. Create a visualization
+
+Create a visualization that reflects the analysis you ran in part c (i.e. if you compared medians, you should create a plot representing medians; if you built a model, you should show predictions and confidence intervals).
+
+For full marks, your plot should:
+
+- have labelled x- and y-axes with units
+- use a different theme than the default
+- use different colors than the default
+- show the underlying data
+
+## e. Write a caption
+
+Write a caption for the figure you created in part d. Include a figure number, title, description of visual components (including but not limited to shapes, colors, lines, etc.).
+
+**Figure 2.**xxx
+
+## f. Write about your results
+
+In 2-4 sentences, write about your results (with appropriate components in the parenthetical statistical summary).
+
+Include any components that would provide additional context to your interpretation (e.g. differences in means) or allow you to quantify the magnitude of effects (e.g. effect sizes).
+
+xxx
+
+## g. Sharing your affective visualization
+
+This is a component you will complete in workshop during week 10. We will be taking attendance that day.
+
+
+
