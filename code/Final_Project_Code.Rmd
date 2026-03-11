@@ -11,7 +11,14 @@ execute:
 ---
 # Set-up
 ```{r setup}
-suppressPackageStartupMessages({})
+suppressPackageStartupMessages({
+  library(here) # reads in here package
+  library(dplyr)   # reads in dplyr package 
+  library(forcats)  # reads in forcats package
+  library(janitor) # reads in janitor package
+  })
+# Stores the kelp data as an object called kelp
+kelp <- read.csv(here('data',"Annual_Kelp_All_Years_20250903.csv")) 
 
 ```
 
@@ -89,35 +96,29 @@ When you are done with all your cleaning steps:
 - the structure using `str()`
 
 ```{r}
-# function 1
-filter(!(date == "2000-09-22" & transect == "6" & quad == "40"))
+kelp_clean <- kelp |> # uses raw data 
+  # standardizes column names to lowercase and replaces spaces with underscores
+  clean_names() |>  
+  # keep only the three focal sites: IVEE, NAPL, CARP 
+  filter(site %in% c("IVEE", "NAPL", "CARP")) |>  
+  # remove observations with specified values for each date, transect, and quad
+  filter(!(date == "2000-09-22" & transect == "6" & quad == "40")) |>
+  # create column 'cite_name' with appropriate site names associated site codes
+  mutate(site_name = case_when(site == "NAPL" ~ "Naples",
+                               site == "IVEE" ~ "Isla Vista",
+                               site == "CARP" ~ "Carpinteria")) |>
+  mutate(site_name = as_factor(site_name), # converts `site_name` to a factor
+         # sets the order of the factor 'site_name' for plotting etc.
+         site_name = fct_relevel(site_name,"Naples", "Isla Vista", "Carpinteria")) |>
+  group_by(site_name, year) |> # groups data by variables 'site_name' and 'year'
+  # creates column 'mean_fronds' with mean fronds within each site-year group
+  summarize(mean_fronds = mean(fronds)) |>
+  ungroup()  # removes grouping from cleaned data set output
 
-# function 2
-mutate(site_name = as_factor(site_name),
-       site_name = fct_relevel(site_name,
-                               "Naples", "Isla Vista", "Carpinteria"))
+kelp_clean |> slice_sample(n = 5) # displays 5 rows from cleaned data set
 
-# function 3
-clean_names()
+str(kelp_clean) # displays structure of cleaned data set
 
-# function 4
-ungroup()
-
-# function 5
-group_by(site_name, year)
-
-# function 6
-filter(site %in% c("IVEE", "NAPL", "CARP"))
-
-# function 7
-summarize(mean_fronds = mean(fronds))
-
-# function 8
-mutate(site_name = case_when(
-  site == "NAPL" ~ "Naples",
-  site == "IVEE" ~ "Isla Vista",
-  site == "CARP" ~ "Carpinteria"
-))
 ```
 
 ## b. Understanding the data
