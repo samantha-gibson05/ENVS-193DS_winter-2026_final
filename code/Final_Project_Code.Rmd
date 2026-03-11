@@ -65,7 +65,7 @@ In 1-2 sentences, outline:
 - what *type* of variable it is, and
 - *why* that variable might influence wetland flooding.
 
-xxx
+One additional variable that could influence flooded wetland area is **water-control management intensity**, such as whether managers actively impound or deliver water to wetlands. This would likely be a categorical explanatory variable, and it could influence flooding because the paper emphasizes that wetland extent in this system is shaped not only by precipitation but also by management actions and infrastructure that control water delivery and retention.
 
 # Problem 2. Data visualization
 
