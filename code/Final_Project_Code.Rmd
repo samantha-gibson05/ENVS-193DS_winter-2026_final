@@ -257,8 +257,30 @@ Create a clean dataset to use called `mopl_clean`. In no particular order:
 
 Write your code to run all your models. Do not display any output.
 
-```{r}
+```{r results=hide}
+mopl_clean <- mopl |>
+  clean_names() |>  # make column names lowercase and consistent
+  mutate(used_bin = if_else(id == "used", 1, 0)) |>
+  select(used_bin, edgedist, vo_nest)  # keep only variables needed for modeling
+# Model 1: null model
+mod_1 <- glm(used_bin ~ 1, 
+             data = mopl_clean, 
+             family = binomial)
 
+# Model 2: saturated model
+mod_2 <- glm(used_bin ~ edgedist + vo_nest, 
+             data = mopl_clean, 
+             family = binomial)
+
+# Model 3: edgedist only
+mod_3 <- glm(used_bin ~ edgedist,
+             data = mopl_clean,
+             family = binomial)
+
+# Model 4: vo_nest only
+mod_4 <- glm(used_bin ~ vo_nest,
+             data = mopl_clean,
+             family = binomial)
 ```
 
 
@@ -267,14 +289,14 @@ Write your code to run all your models. Do not display any output.
 Using Akaike’s Information Criterion (AIC), choose the best model.
 
 ```{r}
-
+AIC(mod_1, mod_2, mod_3, mod_4)
 ```
 
 In text, write what the best model was (i.e. “The best model as determined by Akaike’s Information Criterion (AIC)…”).
 
 **Use the predictors and the response variable to describe the model**, not the model number that you assigned.
 
-xxx
+The best model out of the 4 as determined by Akaike’s Information Criterion (AIC) was the model predicting probability of Mountain Plover nest site using only the variable `vo_nest` (visual obstruction height). This model had the lowest AIC value (331.77) compared with the models indicating that visual obstruction alone provided the best balance between model fit and complexity.
 
 ## f. Check the diagnostics
 Check your diagnostics for the model you selected using simulated residuals from the `DHARMa` package.
