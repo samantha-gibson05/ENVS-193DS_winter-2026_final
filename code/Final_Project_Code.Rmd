@@ -18,10 +18,15 @@ suppressPackageStartupMessages({
   library(janitor) # reads in janitor package
   library(showtext) # reads in showtext package
   library(ggplot2) # reads in ggplot2 package
+  library(tidyverse) # reads in tidyverse package
+  library(broom) # reads in broom package
+  library(performance) # reads in performance package
+  library(DHARMa) # reads in DHARMa package
   })
 # Stores the kelp data as an object called kelp
 kelp <- read.csv(here('data',"Annual_Kelp_All_Years_20250903.csv")) 
-
+# 
+mopl <- read.csv(here('data',"MOPL_nest-site_selection_Duchardt_et_al._2019.csv")) 
 ```
 
 [Here is my GitHub Repository](https://github.com/samantha-gibson05/ENVS-193DS_winter-2026_final.git)
@@ -192,17 +197,23 @@ In 1-2 sentences each, describe:
 
 # Problem 3. Data analysis
 
-Read in your data in the set up chunk, storing it as a new object called `mopl`.
-
-Do any exploring you need to do (exploratory visualizations, etc.) but DO NOT include any code or output from your data exploration.
-
-Note that you may have some cleaning/wrangling steps to do. Do them before running your models!
+```{r}
+# figure out how to exclude
+mopl_explore <- mopl |>
+  clean_names() |>
+  mutate(nest_use = if_else(id == "used", 1, 0))
+mopl_mod <- glm(nest_use ~ edgedist * vo_nest,
+               data = mopl_explore,
+               family = "binomial")
+plot(simulateResiduals(mopl_mod))
+summary(mopl_mod)
+```
 
 ## a. Response variable
 
 In 1-2 sentences, explain what the 1s and 0s mean in this data set biologically.
 
-xxx
+In this dataset, the response variable is nesting habitat (nest site use vs. non-use) where	a 1 would represent a site that **was used** by a Mountain Plover for nesting, and a 0 would represent an available but **unused** site. In the raw dataset, this information comes from the ID column, which is coded as "used" and "available".
 
 ## b. Purpose of study
 
@@ -361,6 +372,4 @@ xxx
 ## g. Sharing your affective visualization
 
 This is a component you will complete in workshop during week 10. We will be taking attendance that day.
-
-
 
