@@ -16,6 +16,8 @@ suppressPackageStartupMessages({
   library(dplyr)   # reads in dplyr package 
   library(forcats)  # reads in forcats package
   library(janitor) # reads in janitor package
+  library(showtext) # reads in showtext package
+  library(ggplot2) # reads in ggplot2 package
   })
 # Stores the kelp data as an object called kelp
 kelp <- read.csv(here('data',"Annual_Kelp_All_Years_20250903.csv")) 
@@ -127,7 +129,7 @@ The code chunk above includes a line that filters out frond observations from th
 
 In 1-2 sentences, describe why. What is the number for the value of fronds in that “quad” in that “transect”? What does that value represent? Reference the specific place you found information on what that value represents (e.g. in the Summary tab of the data page).
 
-xxx
+The observation from 2000-09-22 in transect 6, quad 40 is filtered out because the recorded value is -99999 which is a placeholder value rather than a real biological measurement. In the "Files and Data Links" tab the table row "Others" lists the value -99999 as a "Missing Value Code", meaning that the number of kelp fronds was not actually measured or recorded for that quadrat, so it should be removed before calculating summary statistics.
 
 ## c. Visualize the data
 
@@ -138,13 +140,36 @@ The specific aesthetic components you need to recreate are:
 - the geometries (there are two)
 - the text (all axis and legend text, and the title)
 - different, custom colors for each site
-- the legend position inside the panel
 - the title position
 - the panel (a grid without the border)
 - use of a custom font (that is consistent across all text in the figure)
 
 ```{r}
+# xxx don't forget to comment
+font_add_google("Lato", "lato")
+showtext_auto()
 
+ggplot(kelp_clean, aes(x = year, y = mean_fronds, color = site_name)) +
+  geom_line(linewidth = 0.6) +                 
+  geom_point(size = 2.6) +                   
+  scale_color_manual(
+    values = c(
+      "Naples" = "cyan4",
+      "Isla Vista" = "goldenrod4",
+      "Carpinteria" = "grey60"),
+    name = "Site") +
+  labs(
+    title = "Sites vary in mean kelp fronds per year",
+    x = "Year",
+    y = "Mean kelp fronds per year"
+  ) +
+  scale_x_continuous(breaks = seq(2000, 2025, by = 5)) +
+  theme_minimal(base_family = "lato") +
+  theme(
+    plot.title = element_text(hjust = 0.5),  # centered title
+    legend.position = "right",                          # legend outside right
+    panel.border = element_blank(),                     # no panel border
+    text = element_text(family = "lato"))
 ```
 
 
@@ -203,6 +228,12 @@ Your table should have 4 columns: (1) model number, (2) visual obstruction, (3) 
 
 
 ## d. Run the models
+
+Create a clean dataset to use called `mopl_clean`. In no particular order:
+
+- clean the column names
+- create a new column called `used_bin` to create 1s and 0s from the `id` column
+- select `used_bin`, `edgedist`, and `vo_nest`
 
 Write your code to run all your models. Do not display any output.
 
