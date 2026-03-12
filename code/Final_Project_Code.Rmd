@@ -30,6 +30,8 @@ suppressPackageStartupMessages({
 kelp <- read.csv(here('data',"Annual_Kelp_All_Years_20250903.csv")) 
 # 
 mopl <- read.csv(here('data',"MOPL_nest-site_selection_Duchardt_et_al._2019.csv")) 
+#
+personal_data <- read.csv(here('data',"193DS data - stress (6).csv")) 
 ```
 
 [Here is my GitHub Repository](https://github.com/samantha-gibson05/ENVS-193DS_winter-2026_final.git)
@@ -414,17 +416,78 @@ Additionally, explain *why* this analysis is appropriate with regard to:
 - your question
 - your variables and what *types* of variables they are
 
+**Proposed analysis: Linear regression**
 
-
+A linear regression analysis could be used to test how sleep efficiency (predictor variable) predicts total time slept (response variable). This analysis is appropriate because my research question asks whether changes in one continuous variable (sleep efficiency) are associated with changes in another continuous variable (time slept). Since both variables are numeric and measured on continuous scales, linear regression will allow me to model their relationship and estimate how increases or decreases in efficiency are associated with changes in sleep duration.
 
 ## c. Check any assumptions and run your analysis
 In this section, create two subsections (in the appropriate order) to:
+Show all code and output.
 
 - check any assumptions
+
+```{r}
+personal_data_clean <-personal_data |> 
+  clean_names() |>
+  mutate(sleep_efficiency = as.numeric(str_remove(sleep_efficiency, "%")),
+         time_slept_minutes = time_slept_minutes) |>
+  select(time_slept_minutes, sleep_efficiency) |>
+  drop_na()
+
+sleep_lm <- lm(time_slept_minutes ~ sleep_efficiency, data = personal_data_clean)
+
+# look at model diagnostics
+par(mfrow = c(2, 2))
+plot(sleep_lm)
+par(mfrow = c(1, 1))
+
+# scatterplot to assess linearity
+ggplot(personal_data_clean, 
+       aes(x = sleep_efficiency, y = time_slept_minutes)) +
+  geom_point(color = "darkgreen", size = 2.5, alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "black") +
+  labs(
+    x = "Sleep efficiency (%)",
+    y = "Time slept (minutes)",
+    title = "Relationship between sleep efficiency and time slept"
+  ) +
+  theme_minimal()
+```
+there is one outlier I will remove it and recheck assumptions 
+```{r}
+personal_data_no_outlier <- personal_data_clean |>
+  filter(time_slept_minutes != 230)  # remove the outlier
+
+updated_sleep_lm <- lm(time_slept_minutes ~ sleep_efficiency, data = personal_data_no_outlier)
+
+par(mfrow = c(2, 2))
+plot(updated_sleep_lm)
+par(mfrow = c(1, 1))
+
+# scatterplot to assess linearity
+ggplot(personal_data_no_outlier, 
+       aes(x = sleep_efficiency, y = time_slept_minutes)) +
+  geom_point(color = "darkgreen", size = 2.5, alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "black") +
+  labs(
+    x = "Sleep efficiency (%)",
+    y = "Time slept (minutes)",
+    title = "Relationship between sleep efficiency and time slept"
+  ) +
+  theme_minimal()
+```
+
+The linearity assumption appears reasonably met because the residuals vs fitted plot does not show a strong curved pattern, although there is some scatter and a few unusual points. The normality and homoscedasticity (consistentcy across values) assumptions are reasonably satisfied although the Q–Q plot shows some deviation in the tails, and the scale-location plot suggests some uneven spread in residuals.
+
+Removing the outlier with `time_slept_minutes` = 230 was done because it is substantially lower than the rest of the observations and would have a disproportionate influence on model fit and residual behavior. Since linear regression is sensitive to extreme points, excluding this value improves the diagnostics and makes the model a better representation of the overall relationship between sleep efficiency and time slept for the majority of the data.
+
 - run the analysis you proposed in part b
 - (if applicable) calculate an effect size
 
-Show all code and output.
+```{r}
+summary(updated_sleep_lm)
+```
+
 
 ## d. Create a visualization
 
@@ -437,11 +500,54 @@ For full marks, your plot should:
 - use different colors than the default
 - show the underlying data
 
+
+```{r}
+
+model_preds <- ggpredict(
+  updated_sleep_lm,
+  terms = "sleep_efficiency")
+
+# create plot
+ggplot(personal_data_no_outlier,
+       aes(x = sleep_efficiency,
+           y = time_slept_minutes)) +
+  geom_point(
+    color = "magenta",
+    size = 3,
+    alpha = 0.6
+  ) +  # underlying data
+  geom_ribbon(
+    data = model_preds,
+    aes(x = x,
+        y = predicted,
+        ymin = conf.low,
+        ymax = conf.high),
+    inherit.aes = FALSE,
+    fill = "cyan3",
+    alpha = 0.35
+  ) +  # 95% confidence interval
+  geom_line(
+    data = model_preds,
+    aes(x = x,
+        y = predicted),
+    inherit.aes = FALSE,
+    color = "purple",
+    linewidth = 1.2
+  ) +  # fitted regression line
+  labs(
+    x = "Sleep efficiency (%)",
+    y = "Time slept (minutes)",
+    title = "Time slept increases with sleep efficiency"
+  ) +
+  theme_classic()   # different from default theme
+```
+
+
 ## e. Write a caption
 
 Write a caption for the figure you created in part d. Include a figure number, title, description of visual components (including but not limited to shapes, colors, lines, etc.).
 
-**Figure 2.**xxx
+**Figure 2. Time slept increases with sleep efficiency.** Pink circles/points represent individual nightly observations of time slept (minutes) plotted against sleep efficiency (a percentage out of 100 as calculated by an Oura ringe). The purple line represents the fitted linear regression model predicting time slept from sleep efficiency, while the light blue shaded ribbon shows the 95% confidence interval around the model predictions. Together, the points, line, and shaded confidence band illustrate a statistically significant positive relationship ($\alpha$=0.05) between sleep efficiency and total sleep duration.
 
 ## f. Write about your results
 
@@ -449,7 +555,7 @@ In 2-4 sentences, write about your results (with appropriate components in the p
 
 Include any components that would provide additional context to your interpretation (e.g. differences in means) or allow you to quantify the magnitude of effects (e.g. effect sizes).
 
-xxx
+The linear regression showed a significant positive relationship between sleep efficiency and time slept (Linear regression, F(1, 53) =  27.7, $R^2$ = 0.33 , p < 0.001, $\alpha$ = 0.05). Based on model predictions, for each 1 unit (1 %) increase in sleep efficiency, we expect an increase in time slept of 5.83 ± 1.107 (SE) minutes. The model had an adjusted $R^2$ of 0.331, meaning sleep efficiency explained about 33.1% of the variation in time slept, which indicates a moderate effect size.
 
 ## g. Sharing your affective visualization
 
