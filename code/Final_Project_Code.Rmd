@@ -62,6 +62,8 @@ Note that your co-worker didn’t include any information about the test statist
 
 **Part 1**: Flooded wetland area did not show clear evidence of a relationship with precipitation in this analysis. The statistical test did not provide sufficient evidence to reject the null hypothesis of no association between precipitation and flooded wetland area (Linear regression, F(degrees freedom, degrees freedom) =  test-statistic (F), $R^2$ = R-squared, p = 0.11, $\alpha$ = significance level).
 
+xxxx is F(degrees freedom, degrees freedom) correct xxxx
+
 **Part 2**: Median flooded wetland area did not differ significantly among water year classifications (wet, above normal, below normal, dry, critical drought). The statistical test did not provide sufficient evidence to reject the null hypothesis that median flooded wetland area was the same across wet, above normal, below normal, dry, and critical drought years (Kruskal–Wallis test, $\chi^2$(degrees of freedom) = test-statistic (H), p = 0.12, $\alpha$ = significance level)
 
 ## d. Interpretation
@@ -145,7 +147,7 @@ The specific aesthetic components you need to recreate are:
 - use of a custom font (that is consistent across all text in the figure)
 
 ```{r}
-# xxx don't forget to comment
+# xxxx don't forget to comment
 font_add_google("Lato", "lato")
 showtext_auto()
 
@@ -181,13 +183,11 @@ In 1-2 sentences each, describe:
 
 - the site with the most variable mean kelp fronds per year
 
-xxx
+**Isla Vista** shows the most variability in mean kelp fronds per year. In the plot, the Isla Vista line and points (colored in brown) fluctuate widely across years, ranging from very low values near 4 fronds to peaks close to 40 fronds which produces large vertical changes between adjacent years.
 
 - the site with the least variable mean kelp fronds per year
 
-xxx
-
-
+**Carpinteria** shows the least variability in mean kelp fronds per year. The Carpinteria line and points (colored in grey) stay within a relatively narrow vertical range and are generally between about 3 and 17 fronds with more gradually changes across years compared with the other sites.
 
 
 # Problem 3. Data analysis
