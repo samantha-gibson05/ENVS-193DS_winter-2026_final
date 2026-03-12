@@ -373,7 +373,6 @@ ggpredict(mod_4, terms = "vo_nest [0]")
 
 If the index of visual obstruction is 0, the predicted probability of Mountain Plover nest site occupancy is 0.73 (95% CI [0.65, 0.80]).
 
-
 ## j. Interpret your results
 
 Write 3-5 sentences summarizing what you found, making references to the figure you made in part h and the predictions you calculated in part j. Your summary should include your interpretation of:
@@ -382,28 +381,41 @@ Write 3-5 sentences summarizing what you found, making references to the figure 
 - what relationships, if any, exist between visual obstruction and distance to prairie dog colony and probability of occupancy
 - the biology behind the trends you found - what explains the relationship between visual obstruction and probability of Mountain Plover nest site occupancy?
 
+The probability of Mountain Plover nest site occupancy was highest when there was no visual obstruction at the nest: at `vo_nest` = 0, the model predicted an occupancy probability of about 0.73 (95% CI [0.65, 0.80]), meaning a site with completely open visibility had a roughly 73% chance of being used. As shown in **Figure 1. Predicted probability of Mountain Plover nest site use decreases as visual obstruction at the nest increases.**, the predicted probability of nest site use decreased sharply as visual obstruction increased, with the fitted line (purple) dropping toward 0 and the 95% confidence ribbon (blue) following the same downward trend. In contrast, distance to prairie dog colony edge was not part of the best-supported model, which suggests it did not explain nest-site occupancy as well as visual obstruction in this dataset. Biologically, this pattern makes sense because Mountain Plovers are birds of open, sparsely vegetated habitat, so low visual obstruction likely improves their ability to detect predators and is more consistent with the short-structure nesting habitat they prefer.
+
 # Problem 4. Affective and exploratory visualizations
 ## a. Comparing visualizations
-
 
 Compare and contrast your affective visualization from Homework 3 and the exploratory visualizations you made for Homework 2. In 1-3 sentences each, explain:
 
 - How are the visualizations different from each other in the way you have represented your data?
+
+The exploratory visualizations from Homework 2 focus on clearly displaying the underlying data and statistical relationships using simple and straightforward plots (boxplots and scatterplots). In contrast, the affective visualization from Homework 3 represents the data more abstractly using color, pattern, and opacity to evoke a visual impression rather than emphasizing exact numeric values. This shifts the focus from statistical interpretation to communicating the overall feeling or magnitude of patterns.
+
 - What similarities do you see between all your visualizations?
+
+All of the visualizations I created are based on the same underlying dataset about time slept and time stressed and each attempt to communicate patterns in these variables. They each organize the data visually so that viewers can detect differences or relationships between variables. Despite stylistic differences, they all attempt to represent the same core information/patterns relating to sleep, stress, and sleep efficiency over time/by day of week.
+
 - What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?
+
+The exploratory plots show that time streesed tends to vary across days of the week and that there is some relationship between time slept and time stressed. The affective visualization communicates a similar pattern but in a more abstract way, suggesting variation in stress intensity through color variation rather than exact values. The underlying patterns are the same because the data remain unchanged, but the exploratory plots make the patterns clearer because they retain the quantitative scale while the affective is more emotional in nature.
+
 - What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
 
-
-
-xxx
+xxxx need to do 
 
 ## b. Designing an analysis
 Based on your response variable and one of your potential predictor variables (your focal variable or otherwise), propose one analysis that we talked about this quarter that you could apply to answer your research question(s).
+
+(NOTE: I slightly modified the aim of my personal data project after homework 2. I pivoted my response variable to be time slept and my main predictor to be sleep efficiency with time spent stress remaining as an additional potential predictor.)
 
 Additionally, explain *why* this analysis is appropriate with regard to:
 
 - your question
 - your variables and what *types* of variables they are
+
+
+
 
 ## c. Check any assumptions and run your analysis
 In this section, create two subsections (in the appropriate order) to:
