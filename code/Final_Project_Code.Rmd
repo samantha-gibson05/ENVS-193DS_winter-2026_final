@@ -24,6 +24,7 @@ suppressPackageStartupMessages({
   library(DHARMa) # reads in DHARMa package
   library(tibble)
   library(knitr)
+  library(ggeffects)
   })
 # Stores the kelp data as an object called kelp
 kelp <- read.csv(here('data',"Annual_Kelp_All_Years_20250903.csv")) 
@@ -304,7 +305,8 @@ Check your diagnostics for the model you selected using simulated residuals from
 Display all code and output.
 
 ```{r}
-
+best_model <- mod_4
+simulateResiduals(best_model, plot = TRUE)
 ```
 
 ## g. Visualize the model predictions
@@ -320,20 +322,57 @@ For full credit:
 - use colors that are different from the default
 
 ```{r}
+mod_preds <- ggpredict(mod_4, terms = "vo_nest [0:20 by = 1]")
 
+ggplot(mopl_clean,
+       aes(x = vo_nest,
+           y = used_bin)) +
+  geom_jitter(size = 3,
+              alpha = 0.4,
+              color = "magenta3",
+              height = 0.03,
+              width = 0) +
+  geom_ribbon(data = mod_preds,
+              aes(x = x,
+                  y = predicted,
+                  ymin = conf.low,
+                  ymax = conf.high),
+              inherit.aes = FALSE,
+              alpha = 0.4,
+              fill = "cyan2") +
+  geom_line(data = mod_preds,
+            aes(x = x,
+                y = predicted),
+            inherit.aes = FALSE,
+            linewidth = 1,
+            color = "purple4") +
+  labs(x = "Visual obstruction height at nest (cm)",
+       y = "Probability of Mountain Plover nest site use",
+       title = "Predicted probability of Mountain Plover nest site use") +
+  scale_y_continuous(limits = c(0, 1),
+                     breaks = c(0, 1)) +
+  theme_minimal() +
+  theme(panel.grid = element_blank())
 ```
 
 ## h. Write a caption for your figure.
 
 Include a figure number, title, description of the figure, and data citation.
 
-**Figure 1. ** xxx
+**Figure 1. Predicted probability of Mountain Plover nest site use decreases as visual obstruction at the nest increases.** Transparent pink circles (jittered points) represent individual observations of available and used nest sites, plotted as binary outcomes (0 = available, 1 = used) against visual obstruction height at the nest (cm). The dark purple line represents the fitted predicted probability of nest site use from the selected logistic regression model, and the light blue ribbon represents the associated 95% confidence interval around those predictions. Data originally from: Duchardt, Courtney; Beck, Jeffrey; Augustine, David (2020). Data from: Mountain Plover habitat selection and nest survival in relation to weather variability and spatial attributes of Black-tailed Prairie Dog disturbance [Dataset]. Dryad. <https://doi.org/10.5061/dryad.ttdz08kt7>
 
 ## i. Calculate model predictions
 
 Calculate the predicted probability of Mountain Plover nest site occupancy at 0 on the index of visual obstruction.
 
 Show and annotate all code. Display the output.
+
+```{r}
+ggpredict(mod_4, terms = "vo_nest [0]")
+```
+
+If the index of visual obstruction is 0, the predicted probability of Mountain Plover nest site occupancy is 0.73 (95% CI [0.65, 0.80]).
+
 
 ## j. Interpret your results
 
@@ -354,7 +393,7 @@ Compare and contrast your affective visualization from Homework 3 and the explor
 - What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?
 - What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
 
-xxx
+
 
 xxx
 
