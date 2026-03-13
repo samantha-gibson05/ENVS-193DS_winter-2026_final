@@ -404,7 +404,8 @@ The exploratory plots show that time streesed tends to vary across days of the w
 
 - What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
 
-xxxx need to do 
+During week 9 I received 2 main pieces of feedback from my group: consider changing the represenation of sleep efficiency through opacity so that differences in efficiency are easier to see visaully & add something to it that relates to your theme of tracking sleep data. As a result, I scaled my efficiency scores using the equation $opacity=0.2+\frac{x-0.51}{0.95-0.51}*0.8$ (maximum efficiency = 95%, minimum efficiency = 51%) to better emphasize differences in efficiency and added a night sky background behind my color strips to coincide with the topic of my data as well as increase its creativity.
+
 
 ## b. Designing an analysis
 Based on your response variable and one of your potential predictor variables (your focal variable or otherwise), propose one analysis that we talked about this quarter that you could apply to answer your research question(s).
@@ -560,4 +561,8 @@ The linear regression showed a significant positive relationship between sleep e
 ## g. Sharing your affective visualization
 
 This is a component you will complete in workshop during week 10. We will be taking attendance that day.
+```{r}
+sleep_efficiency) +
+scale_alpha_continuous(range = c(0.2, 1))
+```
 
