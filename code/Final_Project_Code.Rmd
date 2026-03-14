@@ -202,7 +202,7 @@ In 1-2 sentences each, describe:
 
 # Problem 3. Data analysis
 
-```{r results=hide}
+```{r}
 #| include: false
 
 mopl_explore <- mopl |> # uses original data 
@@ -266,7 +266,8 @@ Create a clean dataset to use called `mopl_clean`. In no particular order:
 
 Write your code to run all your models. Do not display any output.
 
-```{r results=hide}
+```{r}
+#| include: false
 mopl_clean <- mopl |> # creates cleaned data for modeling
   clean_names() |>  # makes column names column names lowercase with underscores
   # creates binary response variable with: used = 1, available = 0

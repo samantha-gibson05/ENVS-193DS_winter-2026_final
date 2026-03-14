@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.30">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Sami Gibson">
+<meta name="dcterms.date" content="2026-03-13">
+
+<title>Final_Project_Code</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Final_Project_Code_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Final_Project_Code_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Final_Project_Code_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Final_Project_Code_files/libs/quarto-html/popper.min.js"></script>
+<script src="Final_Project_Code_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Final_Project_Code_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Final_Project_Code_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Final_Project_Code_files/libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Final_Project_Code_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Final_Project_Code_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Final_Project_Code_files/libs/bootstrap/bootstrap-81267100e462c21b3d6c0d5bf76a3417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set-up</a></li>
+  <li><a href="#problem-1.-research-writing" id="toc-problem-1.-research-writing" class="nav-link" data-scroll-target="#problem-1.-research-writing">Problem 1. Research writing</a>
+  <ul class="collapse">
+  <li><a href="#a.-transparent-statistical-methods" id="toc-a.-transparent-statistical-methods" class="nav-link" data-scroll-target="#a.-transparent-statistical-methods">a. Transparent statistical methods</a></li>
+  <li><a href="#b.-figure-needed" id="toc-b.-figure-needed" class="nav-link" data-scroll-target="#b.-figure-needed">b. Figure needed</a></li>
+  <li><a href="#c.-suggestions-for-rewriting" id="toc-c.-suggestions-for-rewriting" class="nav-link" data-scroll-target="#c.-suggestions-for-rewriting">c.&nbsp;Suggestions for rewriting</a></li>
+  <li><a href="#d.-interpretation" id="toc-d.-interpretation" class="nav-link" data-scroll-target="#d.-interpretation">d.&nbsp;Interpretation</a></li>
+  </ul></li>
+  <li><a href="#problem-2.-data-visualization" id="toc-problem-2.-data-visualization" class="nav-link" data-scroll-target="#problem-2.-data-visualization">Problem 2. Data visualization</a>
+  <ul class="collapse">
+  <li><a href="#a.-cleaning-and-summarizing" id="toc-a.-cleaning-and-summarizing" class="nav-link" data-scroll-target="#a.-cleaning-and-summarizing">a. Cleaning and summarizing</a></li>
+  <li><a href="#b.-understanding-the-data" id="toc-b.-understanding-the-data" class="nav-link" data-scroll-target="#b.-understanding-the-data">b. Understanding the data</a></li>
+  <li><a href="#c.-visualize-the-data" id="toc-c.-visualize-the-data" class="nav-link" data-scroll-target="#c.-visualize-the-data">c.&nbsp;Visualize the data</a></li>
+  <li><a href="#d.-interpretation-1" id="toc-d.-interpretation-1" class="nav-link" data-scroll-target="#d.-interpretation-1">d.&nbsp;Interpretation</a></li>
+  </ul></li>
+  <li><a href="#problem-3.-data-analysis" id="toc-problem-3.-data-analysis" class="nav-link" data-scroll-target="#problem-3.-data-analysis">Problem 3. Data analysis</a>
+  <ul class="collapse">
+  <li><a href="#a.-response-variable" id="toc-a.-response-variable" class="nav-link" data-scroll-target="#a.-response-variable">a. Response variable</a></li>
+  <li><a href="#b.-purpose-of-study" id="toc-b.-purpose-of-study" class="nav-link" data-scroll-target="#b.-purpose-of-study">b. Purpose of study</a></li>
+  <li><a href="#c.-table-of-models" id="toc-c.-table-of-models" class="nav-link" data-scroll-target="#c.-table-of-models">c.&nbsp;Table of models</a></li>
+  <li><a href="#d.-run-the-models" id="toc-d.-run-the-models" class="nav-link" data-scroll-target="#d.-run-the-models">d.&nbsp;Run the models</a></li>
+  <li><a href="#e.-select-the-best-model" id="toc-e.-select-the-best-model" class="nav-link" data-scroll-target="#e.-select-the-best-model">e. Select the best model</a></li>
+  <li><a href="#f.-check-the-diagnostics" id="toc-f.-check-the-diagnostics" class="nav-link" data-scroll-target="#f.-check-the-diagnostics">f.&nbsp;Check the diagnostics</a></li>
+  <li><a href="#g.-visualize-the-model-predictions" id="toc-g.-visualize-the-model-predictions" class="nav-link" data-scroll-target="#g.-visualize-the-model-predictions">g. Visualize the model predictions</a></li>
+  <li><a href="#h.-write-a-caption-for-your-figure." id="toc-h.-write-a-caption-for-your-figure." class="nav-link" data-scroll-target="#h.-write-a-caption-for-your-figure.">h. Write a caption for your figure.</a></li>
+  <li><a href="#i.-calculate-model-predictions" id="toc-i.-calculate-model-predictions" class="nav-link" data-scroll-target="#i.-calculate-model-predictions">i. Calculate model predictions</a></li>
+  <li><a href="#j.-interpret-your-results" id="toc-j.-interpret-your-results" class="nav-link" data-scroll-target="#j.-interpret-your-results">j. Interpret your results</a></li>
+  </ul></li>
+  <li><a href="#problem-4.-affective-and-exploratory-visualizations" id="toc-problem-4.-affective-and-exploratory-visualizations" class="nav-link" data-scroll-target="#problem-4.-affective-and-exploratory-visualizations">Problem 4. Affective and exploratory visualizations</a>
+  <ul class="collapse">
+  <li><a href="#a.-comparing-visualizations" id="toc-a.-comparing-visualizations" class="nav-link" data-scroll-target="#a.-comparing-visualizations">a. Comparing visualizations</a></li>
+  <li><a href="#b.-designing-an-analysis" id="toc-b.-designing-an-analysis" class="nav-link" data-scroll-target="#b.-designing-an-analysis">b. Designing an analysis</a></li>
+  <li><a href="#c.-check-any-assumptions-and-run-your-analysis" id="toc-c.-check-any-assumptions-and-run-your-analysis" class="nav-link" data-scroll-target="#c.-check-any-assumptions-and-run-your-analysis">c.&nbsp;Check any assumptions and run your analysis</a></li>
+  <li><a href="#d.-create-a-visualization" id="toc-d.-create-a-visualization" class="nav-link" data-scroll-target="#d.-create-a-visualization">d.&nbsp;Create a visualization</a></li>
+  <li><a href="#e.-write-a-caption" id="toc-e.-write-a-caption" class="nav-link" data-scroll-target="#e.-write-a-caption">e. Write a caption</a></li>
+  <li><a href="#f.-write-about-your-results" id="toc-f.-write-about-your-results" class="nav-link" data-scroll-target="#f.-write-about-your-results">f.&nbsp;Write about your results</a></li>
+  <li><a href="#g.-sharing-your-affective-visualization" id="toc-g.-sharing-your-affective-visualization" class="nav-link" data-scroll-target="#g.-sharing-your-affective-visualization">g. Sharing your affective visualization</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Final_Project_Code</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Sami Gibson </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 13, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="set-up" class="level1">
+<h1>Set-up</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">suppressPackageStartupMessages</span>({</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(here) <span class="co"># reads in here package</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(dplyr)   <span class="co"># reads in dplyr package </span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(forcats)  <span class="co"># reads in forcats package</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(janitor) <span class="co"># reads in janitor package</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(showtext) <span class="co"># reads in showtext package</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggplot2) <span class="co"># reads in ggplot2 package</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyverse) <span class="co"># reads in tidyverse package</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(broom) <span class="co"># reads in broom package</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(performance) <span class="co"># reads in performance package</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(DHARMa) <span class="co"># reads in DHARMa package</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tibble)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(knitr)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ggeffects)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Stores the kelp data as an object called kelp</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>kelp <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">"Annual_Kelp_All_Years_20250903.csv"</span>)) </span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>mopl <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">"MOPL_nest-site_selection_Duchardt_et_al._2019.csv"</span>)) </span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>personal_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="fu">here</span>(<span class="st">'data'</span>,<span class="st">"193DS data - stress (6).csv"</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><a href="https://github.com/samantha-gibson05/ENVS-193DS_winter-2026_final.git">Here is my GitHub Repository</a></p>
+</section>
+<section id="problem-1.-research-writing" class="level1">
+<h1>Problem 1. Research writing</h1>
+<p>You’re working on a research team trying to understand how environmental variables influence wetland flooding area (measured in <span class="math inline">\(m^2\)</span>) in the San Joaquin River Delta. Your co-worker runs some analyses and writes up a report, giving it to you to review. In part 1 of the results section of the report, your co-worker has written: <em>We retained the null hypothesis that precipitation doesn’t predict flooded wetland area (p = 0.11).</em></p>
+<p>In part 2 of the results section of the report, your co-worker has written: <em>We retained the null hypothesis that median flooded wetland area does not differ across water year classification (wet, above normal, below normal, dry, critical drought) (p = 0.12).</em></p>
+<p>It’s great that this report is coming together, but you think they can improve on what they’ve written and make it more understandable to a non-statistical audience.</p>
+<section id="a.-transparent-statistical-methods" class="level2">
+<h2 class="anchored" data-anchor-id="a.-transparent-statistical-methods">a. Transparent statistical methods</h2>
+<p>What statistical tests did your co-worker use?</p>
+<p>Clearly connect the test to the part that you are addressing (e.g.&nbsp;“In part 1, they used _______. In part 2, they used _______.”).</p>
+<p>In <strong>part 1</strong>, they most likely used a simple <strong>linear regression</strong> (<span class="math inline">\(H_0\)</span>: precipitation does not predict flooded wetland area; <span class="math inline">\(H_A\)</span>: precipitation does flooded wetland area) because the statement asks whether precipitation predicts flooded wetland area, which is a continuous response variable. In <strong>part 2</strong>, they most likely used a <strong>Kruskal–Wallis rank-sum test</strong> (<span class="math inline">\(H_0\)</span>: sample 1 median = sample 2 median = sample 3 median ….; <span class="math inline">\(H_A\)</span>: at least 2 sample medians are different form each other), because the statement compares median flooded wetland area across more than two groups of water year classification (wet, above normal, below normal, dry, critical drought).</p>
+</section>
+<section id="b.-figure-needed" class="level2">
+<h2 class="anchored" data-anchor-id="b.-figure-needed">b. Figure needed</h2>
+<p>The test in part 2 seems familiar to you, but you think your coworker could provide additional context using a visualization for their test.</p>
+<p>Describe one figure that your coworker could make to accompany the statement in part 2.</p>
+<p>Be specific about what variables should be on the x-axis, the y-axis, and the visual components of the plot as they relate to the test in <em>addition</em> to naming the type of plot they should make.</p>
+<p>A good figure for part 2 would be a <strong>boxplot</strong> with <strong>jittered points</strong>. The <strong>x-axis</strong> would be water year classification (wet, above normal, below normal, dry, critical drought) and the <strong>y-axis</strong> would be flooded wetland area (<span class="math inline">\(m^2\)</span>). <strong>Visual components</strong> of this plot should include: one boxplot for each water year class showing the median and interquartile range, with individual observations overlaid as jittered points so the reader can see spread, overlap, and sample size across categories. This would match the <strong>Kruskal–Wallis</strong> test well because it visually compares the distributions and medians of flooded wetland area across multiple groups.</p>
+</section>
+<section id="c.-suggestions-for-rewriting" class="level2">
+<h2 class="anchored" data-anchor-id="c.-suggestions-for-rewriting">c.&nbsp;Suggestions for rewriting</h2>
+<p>In 1-3 sentences, write <em>new research statements</em> to include relevant components from parts a-b and a full test summary in parentheses to be transparent about the statistical method.</p>
+<p>Be sure that your rewritten statements clearly delineate the <em>biological narrative</em> from the <em>statistical summary</em>. See lecture and workshop for examples of writing.</p>
+<p>Note that your co-worker didn’t include any information about the test statistic, distribution, etc., and that you only know the p-value. For any part that you do not know, list that part with text. For example, you could write something like: “… <span class="math inline">\(\alpha\)</span><strong>=significance level</strong>…”</p>
+<p><strong>Part 1</strong>: Flooded wetland area did not show clear evidence of a relationship with precipitation. The statistical test did not provide sufficient evidence to reject the null hypothesis of no association between precipitation and flooded wetland area (Linear regression, F(degrees freedom (numerator), degrees freedom (denominator)) = test-statistic (F), <span class="math inline">\(R^2\)</span> = R-squared, p = 0.11, <span class="math inline">\(\alpha\)</span> = significance level).</p>
+<p><strong>Part 2</strong>: Median flooded wetland area did not differ significantly among water year classifications (wet, above normal, below normal, dry, critical drought). The statistical test did not provide sufficient evidence to reject the null hypothesis that median flooded wetland area was the same across all water year classifications (Kruskal–Wallis test, <span class="math inline">\(\chi^2\)</span>(degrees of freedom) = test-statistic (H), p = 0.12, <span class="math inline">\(\alpha\)</span> = significance level)</p>
+</section>
+<section id="d.-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="d.-interpretation">d.&nbsp;Interpretation</h2>
+<p>Based on your co-worker’s analyses, flooded wetland area isn’t affected by precipitation or by the classification of the water year.</p>
+<p>In 1-2 sentences, outline:</p>
+<ul>
+<li>one additional variable that could influence the flooded area of a wetland,</li>
+<li>what <em>type</em> of variable it is, and</li>
+<li><em>why</em> that variable might influence wetland flooding.</li>
+</ul>
+<p>One additional variable that could influence flooded wetland area is <strong>water-control management intensity</strong>, such as whether managers actively impound or deliver water to wetlands. This would likely be a categorical explanatory variable, and it could affect flooding because management infrastructure and water-delivery decisions can directly impact how much water is retained in wetlands.</p>
+</section>
+</section>
+<section id="problem-2.-data-visualization" class="level1">
+<h1>Problem 2. Data visualization</h1>
+<p>Navigate to the SBC LTER’s data catalog. Find and download the dataset on giant kelp fronds in the Santa Barbara Channel to your <code>data</code> folder. (Hint: the page on the data catalog is called “KFCD abundance and size of giant kelp”.)</p>
+<p>In your set up chunk, read in the data as an object called <code>kelp</code>.</p>
+<section id="a.-cleaning-and-summarizing" class="level2">
+<h2 class="anchored" data-anchor-id="a.-cleaning-and-summarizing">a. Cleaning and summarizing</h2>
+<p>Create an object called <code>kelp_clean</code> from <code>kelp</code>.</p>
+<p>To clean and summarize the data frame, use the functions in the following code chunk. <em>Only use these functions</em>.</p>
+<p>The functions are out of order. Put the functions in the right order and use the pipe operator to get the data frame you need.</p>
+<p>Annotate each function to demonstrate your understanding of its use.</p>
+<p>When you are done with all your cleaning steps:</p>
+<ul>
+<li>display 5 rows from <code>kelp_clean</code> using <code>slice_sample()</code> and</li>
+<li>the structure using <code>str()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>kelp_clean <span class="ot">&lt;-</span> kelp <span class="sc">|&gt;</span> <span class="co"># uses raw data </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># standardizes column names to lowercase and replaces spaces with underscores</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span>  </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># keep only the three focal sites: IVEE, NAPL, CARP </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(site <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"IVEE"</span>, <span class="st">"NAPL"</span>, <span class="st">"CARP"</span>)) <span class="sc">|&gt;</span>  </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># remove observations with specified values for each date, transect, and quad</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(date <span class="sc">==</span> <span class="st">"2000-09-22"</span> <span class="sc">&amp;</span> transect <span class="sc">==</span> <span class="st">"6"</span> <span class="sc">&amp;</span> quad <span class="sc">==</span> <span class="st">"40"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create column 'site_name' with appropriate site names associated site codes</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">site_name =</span> <span class="fu">case_when</span>(site <span class="sc">==</span> <span class="st">"NAPL"</span> <span class="sc">~</span> <span class="st">"Naples"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                               site <span class="sc">==</span> <span class="st">"IVEE"</span> <span class="sc">~</span> <span class="st">"Isla Vista"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                               site <span class="sc">==</span> <span class="st">"CARP"</span> <span class="sc">~</span> <span class="st">"Carpinteria"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">site_name =</span> <span class="fu">as_factor</span>(site_name), <span class="co"># converts `site_name` to a factor</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>         <span class="co"># sets the order of the factor 'site_name' for plotting etc.</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">site_name =</span> <span class="fu">fct_relevel</span>(site_name,<span class="st">"Naples"</span>, <span class="st">"Isla Vista"</span>, <span class="st">"Carpinteria"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(site_name, year) <span class="sc">|&gt;</span> <span class="co"># groups data by variables 'site_name' and 'year'</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="co"># creates column 'mean_fronds' with mean fronds within each site-year group</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_fronds =</span> <span class="fu">mean</span>(fronds)) <span class="sc">|&gt;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()  <span class="co"># removes grouping from cleaned data set output</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>kelp_clean <span class="sc">|&gt;</span> <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">5</span>) <span class="co"># displays 5 rows from cleaned data set</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+  site_name   year mean_fronds
+  &lt;fct&gt;      &lt;int&gt;       &lt;dbl&gt;
+1 Isla Vista  2024       10.3 
+2 Isla Vista  2010        4.78
+3 Isla Vista  2016        7.74
+4 Isla Vista  2022       38.3 
+5 Naples      2023        4.87</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(kelp_clean) <span class="co"># displays structure of cleaned data set</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [77 × 3] (S3: tbl_df/tbl/data.frame)
+ $ site_name  : Factor w/ 3 levels "Naples","Isla Vista",..: 1 1 1 1 1 1 1 1 1 1 ...
+ $ year       : int [1:77] 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 ...
+ $ mean_fronds: num [1:77] 1.8947 0.0606 3.0111 9.2596 7.8141 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="b.-understanding-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="b.-understanding-the-data">b. Understanding the data</h2>
+<p>The code chunk above includes a line that filters out frond observations from the date <code>2000-09-22</code> in transect 6 in quad 40.</p>
+<p>In 1-2 sentences, describe why. What is the number for the value of fronds in that “quad” in that “transect”? What does that value represent? Reference the specific place you found information on what that value represents (e.g.&nbsp;in the Summary tab of the data page).</p>
+<p>The observation from <code>2000-09-22</code> in transect 6, quad 40 is filtered out because the recorded value is -99999 which is a placeholder value rather than a real biological measurement. In the “Files and Data Links” tab the table row “Others” identifies the value -99999 as a “Missing Value Code”, meaning the frond count was not actually recorded for that quadrat and should be excluded from summary statistics.</p>
+</section>
+<section id="c.-visualize-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="c.-visualize-the-data">c.&nbsp;Visualize the data</h2>
+<p>Recreate the visualization</p>
+<p>The specific aesthetic components you need to recreate are:</p>
+<ul>
+<li>the geometries (there are two)</li>
+<li>the text (all axis and legend text, and the title)</li>
+<li>different, custom colors for each site</li>
+<li>the title position</li>
+<li>the panel (a grid without the border)</li>
+<li>use of a custom font (that is consistent across all text in the figure)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># loads the font "Lato" and names it "lato" for later use </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">font_add_google</span>(<span class="st">"Lato"</span>, <span class="st">"lato"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># enables showtext</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(kelp_clean, <span class="co"># uses cleaned data</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> year, <span class="co"># sets x-axis to year</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> mean_fronds, <span class="co"># sets y-axis to mean_fronds</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> site_name)) <span class="sc">+</span> <span class="co"># colors lines by site</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="fl">0.6</span>) <span class="sc">+</span> <span class="co"># creates lines connecting yearly mean values            </span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.6</span>) <span class="sc">+</span>  <span class="co"># adds points for each yearly mean frond value               </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>( <span class="co"># manually assign custom colors to each site</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Naples"</span> <span class="ot">=</span> <span class="st">"cyan4"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Isla Vista"</span> <span class="ot">=</span> <span class="st">"goldenrod4"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>               <span class="st">"Carpinteria"</span> <span class="ot">=</span> <span class="st">"grey60"</span>),</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"Site"</span>) <span class="sc">+</span> <span class="co"># sets title of legend </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Sites vary in mean kelp fronds per year"</span>, <span class="co"># sets plot title</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>, <span class="co"># sets x-axis title</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mean kelp fronds per year"</span>) <span class="sc">+</span> <span class="co"># sets y-axis title</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sets scale of labeling x-axis for every 5 years from 2000-2025</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">2000</span>, <span class="dv">2025</span>, <span class="at">by =</span> <span class="dv">5</span>)) <span class="sc">+</span> </span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"lato"</span>) <span class="sc">+</span> <span class="co"># applies minimal theme + uses Lato font </span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="fl">0.5</span>),  <span class="co"># centered title</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"right"</span>, <span class="co"># legend outside right</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(), <span class="co"># no panel border</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"lato"</span>)) <span class="co"># ensures all text uses the Lato font</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Final_Project_Code_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="d.-interpretation-1" class="level2">
+<h2 class="anchored" data-anchor-id="d.-interpretation-1">d.&nbsp;Interpretation</h2>
+<p><em>Be specific</em> with the visual components of the plot to support your characterization.</p>
+<p>In 1-2 sentences each, describe:</p>
+<ul>
+<li>the site with the most variable mean kelp fronds per year</li>
+</ul>
+<p><strong>Isla Vista</strong> shows the most variability in mean kelp fronds per year. In the plot, the Isla Vista line and points (colored in brown) fluctuate widely across years, ranging from very low values near 4 fronds to peaks close to 40 fronds which produces large vertical changes between adjacent years.</p>
+<ul>
+<li>the site with the least variable mean kelp fronds per year</li>
+</ul>
+<p><strong>Carpinteria</strong> shows the least variability in mean kelp fronds per year. The Carpinteria line and points (colored in grey) stay within a relatively narrow vertical range and are generally between about 3 and 17 fronds with more gradually changes across years compared with the other sites.</p>
+</section>
+</section>
+<section id="problem-3.-data-analysis" class="level1">
+<h1>Problem 3. Data analysis</h1>
+<section id="a.-response-variable" class="level2">
+<h2 class="anchored" data-anchor-id="a.-response-variable">a. Response variable</h2>
+<p>In 1-2 sentences, explain what the 1s and 0s mean in this data set biologically.</p>
+<p>In this dataset, the response variable is nest site use (nest site use vs.&nbsp;non-use) where a 1 would represent a site that <strong>was used</strong> by a Mountain Plover for nesting, and a 0 would represent an available but <strong>unused</strong> site. In the raw dataset, this information comes from the ID column, which is coded as “used” and “available”.</p>
+</section>
+<section id="b.-purpose-of-study" class="level2">
+<h2 class="anchored" data-anchor-id="b.-purpose-of-study">b. Purpose of study</h2>
+<p>In this problem, you will be examining the potential effects of <em>visual obstruction</em> and <em>distance to prairie dog colony edge</em> on the probability of a nest site being occupied by a Mountain Plover.</p>
+<p>In 2-3 sentences for each predictor, describe:</p>
+<ul>
+<li>what kind of variable it is (i.e.&nbsp;continuous, discrete, categorical, etc.),</li>
+<li>how it could possibly influence the probability of Mountain Plover nest site use (i.e.&nbsp;as visual obstruction increases, the probability of Mountain Plover nest site use would ______________ because…), and</li>
+<li>where in the paper you found this information (the specific section, subsection, and paragraph)</li>
+</ul>
+<p><strong>Predictor 1: Visual Obstruction</strong> (<code>vo_nest</code>) This is <strong>continuous</strong> predictor because it measures (in cm) the “height at which the vegetation is sufficiently dense to obscure a 2.5-cm wide pole when viewed from a 1-m height.” As visual obstruction increases, the probability of Mountain Plover nest-site use would likely decrease, because plovers generally prefer open habitat with short, sparse vegetation that allow them to detect predators. Additionally, the article states that, “plovers avoided nesting in areas with a maximum vegetation height &gt;11 cm, corresponding with an average visual obstruction of &gt;5 cm” (Discussion Section Paragraph 4).</p>
+<p><strong>Predictor 2: Distance to Prairie Dog Colony Edge</strong> (<code>edgedist</code>)</p>
+<p>This is a <strong>continuous</strong> predictor, because it is the measured distance from each site to the edge of a prairie dog colony. As distance to the prairie dog colony edge increases, the probability of Mountain Plover nest-site use would likely decrease, because nests nearer colony edges create disturbed, sparsely vegetated habitat that plovers prefer for nesting. According to the article, “taller vegetation may provide protection from predators (Schneider et al.&nbsp;2006), while vegetation and shrubs may provide better opportunities for thermoregulation, especially important for chicks” (Discussion Section Paragraph 4).</p>
+</section>
+<section id="c.-table-of-models" class="level2">
+<h2 class="anchored" data-anchor-id="c.-table-of-models">c.&nbsp;Table of models</h2>
+<p>Make a table of all the models you will need to run. You will run 4 models: a null model, a saturated model, and two other models with different combinations of predictors.</p>
+<p>Your table should have 4 columns: (1) model number, (2) visual obstruction, (3) distance to prairie dog colony, and (4) model description.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 15%">
+<col style="width: 38%">
+<col style="width: 34%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>model #</th>
+<th>visual obs.</th>
+<th>distance to prairie dog colony</th>
+<th>model_description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>No</td>
+<td>No</td>
+<td>null model</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>saturated model</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Yes</td>
+<td>No</td>
+<td>visual obstruction only</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>No</td>
+<td>Yes</td>
+<td>distance to colony edge only</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="d.-run-the-models" class="level2">
+<h2 class="anchored" data-anchor-id="d.-run-the-models">d.&nbsp;Run the models</h2>
+<p>Create a clean dataset to use called <code>mopl_clean</code>. In no particular order:</p>
+<ul>
+<li>clean the column names</li>
+<li>create a new column called <code>used_bin</code> to create 1s and 0s from the <code>id</code> column</li>
+<li>select <code>used_bin</code>, <code>edgedist</code>, and <code>vo_nest</code></li>
+</ul>
+<p>Write your code to run all your models. Do not display any output.</p>
+</section>
+<section id="e.-select-the-best-model" class="level2">
+<h2 class="anchored" data-anchor-id="e.-select-the-best-model">e. Select the best model</h2>
+<p>Using Akaike’s Information Criterion (AIC), choose the best model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(mod_1, mod_2, mod_3, mod_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      df      AIC
+mod_1  1 384.6172
+mod_2  3 333.7410
+mod_3  2 386.0911
+mod_4  2 331.7690</code></pre>
+</div>
+</div>
+<p>In text, write what the best model was (i.e.&nbsp;“The best model as determined by Akaike’s Information Criterion (AIC)…”).</p>
+<p><strong>Use the predictors and the response variable to describe the model</strong>, not the model number that you assigned.</p>
+<p>The best model as determined by Akaike’s Information Criterion (AIC) was the model predicting the probability of Mountain Plover nest site using only the variable <code>vo_nest</code> (visual obstruction height). This model had the lowest AIC value (331.77) indicating that visual obstruction alone provided the best balance between model fit and complexity among the candidate models.</p>
+</section>
+<section id="f.-check-the-diagnostics" class="level2">
+<h2 class="anchored" data-anchor-id="f.-check-the-diagnostics">f.&nbsp;Check the diagnostics</h2>
+<p>Check your diagnostics for the model you selected using simulated residuals from the <code>DHARMa</code> package.</p>
+<p>Display all code and output.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save the selected best model by the AIC as object `best_model`</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>best_model <span class="ot">&lt;-</span> mod_4</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># display the DHARMa diagnostic plots for the simulated residuals</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">simulateResiduals</span>(best_model, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Final_Project_Code_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Object of Class DHARMa with simulated residuals based on 250 simulations with refit = FALSE . See ?DHARMa::simulateResiduals for help. 
+ 
+Scaled residual values: 0.5627704 0.9762747 0.6883876 0.8415387 0.9237159 0.7390575 0.9752644 0.9991487 0.8432224 0.7009878 0.6273999 0.7629146 0.7706254 0.8009958 0.9650969 0.6341552 0.3838704 0.7790236 0.718365 0.8568392 ...</code></pre>
+</div>
+</div>
+<p>These plots assess whether the simulated residuals show major deviations from model assumptions. The DHARMa residual vs.&nbsp;predicted output shows that “no significant problems are detected”. The residuals in the QQ plot approximately follow the reference line.</p>
+</section>
+<section id="g.-visualize-the-model-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="g.-visualize-the-model-predictions">g. Visualize the model predictions</h2>
+<p>Create a plot showing model predictions <em>for your selected model</em> with 95% confidence intervals around the predictions and the underlying data.</p>
+<p>Show and annotate all code. Show the output.</p>
+<p>For full credit:</p>
+<ul>
+<li>make sure the x- and y-axis labels are written in full with units if necessary</li>
+<li>take out the gridlines</li>
+<li>use colors that are different from the default</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate predicted probabilities </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>mod_preds <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(mod_4, <span class="co"># uses selected 'best' model</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                       <span class="co"># uses vo_nest values from 0 to 20 by 1</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">terms =</span> <span class="st">"vo_nest [0:20 by = 1]"</span>) </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mopl_clean, <span class="co"># uses cleaned data</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> vo_nest, <span class="co"># x-axis is vo_nest</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> used_bin)) <span class="sc">+</span> <span class="co"># y-axis is binary column for nest use</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="co">#  adds jittered data points + sets size</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="co"># sets transparency for points</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">color =</span> <span class="st">"magenta3"</span>, <span class="co"># sets point color</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">height =</span> <span class="fl">0.03</span>, <span class="co"># sets vertical height of jitter</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">width =</span> <span class="dv">0</span>) <span class="sc">+</span> <span class="co"># does not jitter horizontally</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> mod_preds, <span class="co"># uses model predictions as data for CI ribbon</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="co"># x is x values (vo_nest)</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> predicted, <span class="co"># y is probability (nest use )</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ymin =</span> conf.low, <span class="co"># sets low end of CI</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ymax =</span> conf.high), <span class="co"># sets high end of CI</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="co"># does not inherit aesthetics</span></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="co"># sets transparency for ribbon</span></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">"cyan2"</span>) <span class="sc">+</span> <span class="co"># sets color for ribbon</span></span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> mod_preds, <span class="co"># uses model predictions as data for line</span></span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="co"># x is x values (vo_nest)</span></span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> predicted), <span class="co"># y is probability (nest use )</span></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="co"># does not inherit aesthetics</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="dv">1</span>, <span class="co"># sets line width</span></span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"purple4"</span>) <span class="sc">+</span> <span class="co"># sets color of line</span></span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Visual obstruction height at nest (cm)"</span>, <span class="co"># sets title for x-axis</span></span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Probability of Mountain Plover nest site use"</span>, <span class="co"># sets title for y-axis</span></span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>       <span class="co"># sets plot title</span></span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Predicted probability of Mountain Plover nest site use"</span>) <span class="sc">+</span></span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set the y-axis to show the full probability range from 0 to 1</span></span>
+<span id="cb11-33"><a href="#cb11-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb11-34"><a href="#cb11-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>() <span class="sc">+</span> <span class="co"># sets theme</span></span>
+<span id="cb11-35"><a href="#cb11-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="co"># remove any gridlines</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Final_Project_Code_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="h.-write-a-caption-for-your-figure." class="level2">
+<h2 class="anchored" data-anchor-id="h.-write-a-caption-for-your-figure.">h. Write a caption for your figure.</h2>
+<p>Include a figure number, title, description of the figure, and data citation.</p>
+<p><strong>Figure 1. Predicted probability of Mountain Plover nest site use decreases as visual obstruction at the nest increases.</strong> Transparent pink circles (jittered points) represent individual observations of available and used nest sites, plotted as binary outcomes (0 = available, 1 = used) against visual obstruction height at the nest (cm). The dark purple line represents the fitted predicted probability of nest site use from the selected logistic regression model, and the light blue ribbon represents the associated 95% confidence interval around those predictions. Data originally from: Duchardt, Courtney; Beck, Jeffrey; Augustine, David (2020). Data from: Mountain Plover habitat selection and nest survival in relation to weather variability and spatial attributes of Black-tailed Prairie Dog disturbance [Dataset]. Dryad. <a href="https://doi.org/10.5061/dryad.ttdz08kt7" class="uri">https://doi.org/10.5061/dryad.ttdz08kt7</a>.</p>
+</section>
+<section id="i.-calculate-model-predictions" class="level2">
+<h2 class="anchored" data-anchor-id="i.-calculate-model-predictions">i. Calculate model predictions</h2>
+<p>Calculate the predicted probability of Mountain Plover nest site occupancy at 0 on the index of visual obstruction.</p>
+<p>Show and annotate all code. Display the output.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculates the predicted probability of nest-site occupancy</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpredict</span>(mod_4, <span class="co"># uses AIC selected 'best' model</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">terms =</span> <span class="st">"vo_nest [0]"</span>) <span class="co"># specifies when visual obstruction = 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Predicted probabilities of used_bin
+
+vo_nest | Predicted |     95% CI
+--------------------------------
+      0 |      0.73 | 0.65, 0.80</code></pre>
+</div>
+</div>
+<p>When visual obstruction at the nest is 0 cm, the predicted probability of Mountain Plover nest site occupancy 0.73 (95% CI [0.65, 0.80]).</p>
+</section>
+<section id="j.-interpret-your-results" class="level2">
+<h2 class="anchored" data-anchor-id="j.-interpret-your-results">j. Interpret your results</h2>
+<p>Write 3-5 sentences summarizing what you found, making references to the figure you made in part h and the predictions you calculated in part j. Your summary should include your interpretation of:</p>
+<ul>
+<li>the predicted probability of nest site occupancy at 0 (no visual obstruction)</li>
+<li>what relationships, if any, exist between visual obstruction and distance to prairie dog colony and probability of occupancy</li>
+<li>the biology behind the trends you found - what explains the relationship between visual obstruction and probability of Mountain Plover nest site occupancy?</li>
+</ul>
+<p>The probability of Mountain Plover nest site occupancy was highest when there was no visual obstruction at the nest: at <code>vo_nest</code> = 0, the model predicted an occupancy probability of about 0.73 (95% CI [0.65, 0.80]), meaning a site with completely open visibility had about a 73% chance of being used. As shown in <strong>Figure 1</strong>, the predicted probability of nest site use decreased sharply as visual obstruction increased, with the fitted line (purple) dropping toward 0 and the 95% confidence ribbon (blue) representing the uncertainty around that decline. In contrast, distance to prairie dog colony edge was not part of the best model (determined by AIC), which suggests it did not explain nest-site occupancy as well as visual obstruction in this dataset. Biologically, this pattern is consistent with Mountain Plover preference of open, sparsely vegetated nesting habitat, so low visual obstruction may improves their ability to detect predators and is a better match to the short nesting habitat they tend to prefer.</p>
+</section>
+</section>
+<section id="problem-4.-affective-and-exploratory-visualizations" class="level1">
+<h1>Problem 4. Affective and exploratory visualizations</h1>
+<section id="a.-comparing-visualizations" class="level2">
+<h2 class="anchored" data-anchor-id="a.-comparing-visualizations">a. Comparing visualizations</h2>
+<p>Compare and contrast your affective visualization from Homework 3 and the exploratory visualizations you made for Homework 2. In 1-3 sentences each, explain:</p>
+<ul>
+<li>How are the visualizations different from each other in the way you have represented your data?</li>
+</ul>
+<p>The exploratory visualizations from Homework 2 focus on clearly displaying the underlying data and statistical relationships using simple and straightforward plots (boxplots and scatterplots). In contrast, the affective visualization from Homework 3 represents the data more abstractly using color, pattern, and opacity to evoke a visual impression rather than emphasizing exact numeric values. This shifts the focus from precise statistical interpretation to communicating the overall intensity or variation in stress and sleep patterns.</p>
+<ul>
+<li>What similarities do you see between all your visualizations?</li>
+</ul>
+<p>All of the visualizations I created are based on the same underlying dataset about time slept and time stressed and each attempt to communicate patterns in these variables. They each organize the data visually so that viewers can detect differences or relationships between variables. Despite stylistic differences, they all attempt to represent the same core information/patterns relating to sleep, stress, and sleep efficiency over time/by day of week.</p>
+<ul>
+<li>What patterns (e.g.&nbsp;differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?</li>
+</ul>
+<p>The exploratory plots show that time stressed tends to vary across days of the week and that there is some relationship between time slept and time stressed. The affective visualization communicates a similar pattern but in a more abstract way, suggesting variation in stress intensity through color variation rather than exact values. The underlying patterns are the same because the data remain unchanged, but the exploratory plots make the patterns clearer because they retain the quantitative scale and use exact values while the affective visualization is more emotional in nature.</p>
+<ul>
+<li>What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.</li>
+</ul>
+<p>During week 9 I received 2 main pieces of feedback from my group: consider changing the representation of sleep efficiency through opacity so that differences in efficiency are easier to see visually &amp; add something to it that relates to your theme of tracking sleep data. As a result, I scaled my efficiency scores using the equation <span class="math inline">\(opacity=0.2+\frac{x-0.51}{0.95-0.51}*0.8\)</span> (maximum efficiency = 95%, minimum efficiency = 51%) to better emphasize differences in efficiency and added a night sky background behind my color strips to coincide with the topic of my data as well as increase its creativity.</p>
+</section>
+<section id="b.-designing-an-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="b.-designing-an-analysis">b. Designing an analysis</h2>
+<p>Based on your response variable and one of your potential predictor variables (your focal variable or otherwise), propose one analysis that we talked about this quarter that you could apply to answer your research question(s).</p>
+<p>(NOTE: I slightly modified the aim of my personal data project after homework 2. I pivoted my response variable to be time slept and my main predictor to be sleep efficiency with time spent stress remaining as an additional potential predictor.)</p>
+<p>Additionally, explain <em>why</em> this analysis is appropriate with regard to:</p>
+<ul>
+<li>your question</li>
+<li>your variables and what <em>types</em> of variables they are</li>
+</ul>
+<p><strong>Proposed analysis: Linear regression</strong></p>
+<p>A linear regression analysis could be used to test how sleep efficiency (predictor variable) predicts total time slept (response variable). This analysis is appropriate because my research question asks whether changes in one continuous variable (sleep efficiency) are associated with changes in another continuous variable (time slept). Since both variables are numeric and measured on continuous scales, linear regression allows me to model time slept as a function of sleep efficiency and estimate how changes in sleep efficiency are associated with changes in sleep duration.</p>
+</section>
+<section id="c.-check-any-assumptions-and-run-your-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="c.-check-any-assumptions-and-run-your-analysis">c.&nbsp;Check any assumptions and run your analysis</h2>
+<p>In this section, create two subsections (in the appropriate order) to: Show all code and output.</p>
+<ul>
+<li>check any assumptions</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cleaning Data</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>personal_data_clean <span class="ot">&lt;-</span>personal_data <span class="sc">|&gt;</span> <span class="co"># uses initial personal data</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># standardizes column names to lowercase and replaces spaces with underscores</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">clean_names</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># mutates sleep efficiency to be a numeric variable</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">sleep_efficiency =</span> <span class="fu">as.numeric</span>(<span class="fu">str_remove</span>(sleep_efficiency, <span class="st">"%"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># selects only time_slept_minutes + sleep_efficiency</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(time_slept_minutes, sleep_efficiency)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a><span class="co"># creates model with sleep_efficiency as the predictor</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>sleep_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(time_slept_minutes <span class="sc">~</span> sleep_efficiency, </span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> personal_data_clean) <span class="co"># uses cleaned data</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="co"># looks at model diagnostics</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(sleep_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Final_Project_Code_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># scatter plot to assess linearity</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(personal_data_clean, <span class="co"># uses cleaned data </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> sleep_efficiency, <span class="co"># x-axis is sleep efficiency (predictor)</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> time_slept_minutes)) <span class="sc">+</span> <span class="co"># y-axis is time slept (min) (response)</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"magenta3"</span>, <span class="co"># sets point color for each obs</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.5</span>, <span class="co"># sets point size </span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> <span class="co"># sets point transparency</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># creates purple fit line of linear regression model</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sleep efficiency (%)"</span>, <span class="co"># labels x-axis</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Time slept (minutes)"</span>, <span class="co"># labels y-axis</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>       <span class="co"># creates title of the plot</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Relationship between sleep efficiency and time slept"</span>) <span class="sc">+</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="co"># sets theme to minimal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Final_Project_Code_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There is one outlier as indicated by the scale-location plot and scatter plot. I will remove the outlier and recheck the assumptions of the updated model.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>personal_data_no_outlier <span class="ot">&lt;-</span> personal_data_clean <span class="sc">|&gt;</span> <span class="co"># uses cleaned data</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time_slept_minutes <span class="sc">!=</span> <span class="dv">230</span>)  <span class="co"># remove the low-sleep outlier</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># creates model with sleep_efficiency as the predictor</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>updated_sleep_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(time_slept_minutes <span class="sc">~</span> sleep_efficiency, </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                       <span class="co"># uses cleaned data with the outlier removed</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">data =</span> personal_data_no_outlier)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># looks at model diagnostics</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(updated_sleep_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Final_Project_Code_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># scatterplot to assess linearity</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(personal_data_no_outlier, <span class="co"># uses cleaned data with the outlier removed</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> sleep_efficiency, <span class="co"># x-axis is sleep efficiency (predictor)</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> time_slept_minutes)) <span class="sc">+</span> <span class="co"># y-axis is time slept (min) (response)</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"magenta3"</span>, <span class="co"># sets point color for each obs</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">2.5</span>, <span class="co"># sets point size </span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span> <span class="co"># sets point transparency</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># creates purple fit line of linear regression model</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sleep efficiency (%)"</span>, <span class="co"># labels x-axis</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Time slept (minutes)"</span>, <span class="co"># labels y-axis</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>       <span class="co"># creates title of the plot</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Relationship between sleep efficiency and time slept"</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="co"># sets theme to minimal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Final_Project_Code_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The linearity assumption appears reasonably met because the scatterplot of sleep efficiency versus time slept and the residuals vs.&nbsp;fitted plot does not show a strong curved pattern, indicating that a linear relationship is present The normality assumption is reasonably met because the Q–Q plot shows residuals that generally follow the reference line, with only minor deviations in the tails. The homoscedasticity assumption appears to be met because the scale-location plot shows relatively consistent spread of residuals across fitted values. Independence of errors is assumed because each observation represents a different day of sleep data and therefore observations are not expected to influence each other.</p>
+<p>Removing the outlier with <code>time_slept_minutes</code> = 230 was done because it is substantially lower than the rest of the observations and would have a disproportionate influence on model fit and residual behavior. Since linear regression is sensitive to extreme points, excluding this value improves the diagnostics and makes the model a better representation of the overall relationship between sleep efficiency and time slept for the majority of the data.</p>
+<ul>
+<li>run the analysis you proposed in part b</li>
+<li>(if applicable) calculate an effect size</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># outputs summary of linear model to run analysis</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(updated_sleep_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = time_slept_minutes ~ sleep_efficiency, data = personal_data_no_outlier)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-145.837  -19.231    4.163   24.096   94.086 
+
+Coefficients:
+                 Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)       -0.7568    96.7550  -0.008    0.994    
+sleep_efficiency   5.8269     1.1070   5.263 2.61e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 46.14 on 53 degrees of freedom
+Multiple R-squared:  0.3433,    Adjusted R-squared:  0.3309 
+F-statistic:  27.7 on 1 and 53 DF,  p-value: 2.609e-06</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (effect size determined by R-sqaured output in summary)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="d.-create-a-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="d.-create-a-visualization">d.&nbsp;Create a visualization</h2>
+<p>Create a visualization that reflects the analysis you ran in part c (i.e.&nbsp;if you compared medians, you should create a plot representing medians; if you built a model, you should show predictions and confidence intervals).</p>
+<p>For full marks, your plot should:</p>
+<ul>
+<li>have labelled x- and y-axes with units</li>
+<li>use a different theme than the default</li>
+<li>use different colors than the default</li>
+<li>show the underlying data</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate predictions based on linear model </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>model_preds <span class="ot">&lt;-</span> <span class="fu">ggpredict</span>(updated_sleep_lm, <span class="co"># uses updated model</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                         <span class="co"># predictions based on sleep_efficiency </span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                         <span class="at">terms =</span> <span class="st">"sleep_efficiency"</span>) </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create plot</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(personal_data_no_outlier, <span class="co"># uses cleaned data with the outlier removed</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> sleep_efficiency, <span class="co"># x-axis is sleep efficiency (predictor)</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> time_slept_minutes)) <span class="sc">+</span> <span class="co"># y-axis is time slept (min) (response)</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"magenta3"</span>, <span class="co">#  adds magenta data points for each obs</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">3</span>, <span class="co"># sets point size</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span> <span class="co"># sets point transparently</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="at">data =</span> model_preds, <span class="co"># uses model predictions as data for CI ribbon</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="co"># x is x values (sleep_efficiency)</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">y =</span> predicted, <span class="co"># y is predicted values (time_slept_minutes)</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ymin =</span> conf.low, <span class="co"># sets low end of CI</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">ymax =</span> conf.high), <span class="co"># sets high end of CI</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="co"># does not inherit aesthetics</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.35</span>, <span class="co"># sets transparency for ribbon</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">fill =</span> <span class="st">"cyan2"</span>) <span class="sc">+</span> <span class="co"># sets color for ribbon</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> model_preds, <span class="co"># uses model predictions for regression line</span></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>            <span class="fu">aes</span>(<span class="at">x =</span> x,  <span class="co"># x is x values (sleep_efficiency)</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>                <span class="at">y =</span> predicted), <span class="co"># y is predicted values (time_slept_minutes)</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="co"># does not inherit aesthetics</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>            <span class="at">linewidth =</span> <span class="fl">1.2</span>, <span class="co"># sets line width</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">"purple"</span>) <span class="sc">+</span> <span class="co"># sets color of line</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sleep efficiency (%)"</span>, <span class="co"># sets x-axis title</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Time slept (minutes)"</span>, <span class="co"># sets y-axis title</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Time slept increases with sleep efficiency"</span>) <span class="sc">+</span> <span class="co"># sets plot title</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()   <span class="co"># different from default theme</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Final_Project_Code_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="e.-write-a-caption" class="level2">
+<h2 class="anchored" data-anchor-id="e.-write-a-caption">e. Write a caption</h2>
+<p>Write a caption for the figure you created in part d.&nbsp;Include a figure number, title, description of visual components (including but not limited to shapes, colors, lines, etc.).</p>
+<p><strong>Figure 2. Time slept increases with sleep efficiency.</strong> Pink circles/points represent individual nightly observations of time slept (minutes) plotted against sleep efficiency (a percentage out of 100 as calculated by an Oura Ring). The purple line represents the fitted linear regression model predicting time slept from sleep efficiency, while the light blue shaded ribbon shows the 95% confidence interval around the model predictions. Together, the points, line, and shaded confidence band illustrate a statistically significant positive relationship between sleep efficiency and total sleep duration.</p>
+</section>
+<section id="f.-write-about-your-results" class="level2">
+<h2 class="anchored" data-anchor-id="f.-write-about-your-results">f.&nbsp;Write about your results</h2>
+<p>In 2-4 sentences, write about your results (with appropriate components in the parenthetical statistical summary).</p>
+<p>Include any components that would provide additional context to your interpretation (e.g.&nbsp;differences in means) or allow you to quantify the magnitude of effects (e.g.&nbsp;effect sizes).</p>
+<p>The linear regression showed a significant positive relationship between sleep efficiency and time slept (Linear regression, F(1, 53) = 27.7, <span class="math inline">\(R^2\)</span> = 0.33 , p &lt; 0.001, <span class="math inline">\(\alpha\)</span> = 0.05). Based on model predictions, for each 1 unit (1 %) increase in sleep efficiency, we expect an increase in time slept of 5.83 minutes (SE = 1.107). The model had an adjusted <span class="math inline">\(R^2\)</span> of 0.33, meaning sleep efficiency explained about 33% of the variation in time slept, which indicates a moderate effect size.</p>
+</section>
+<section id="g.-sharing-your-affective-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="g.-sharing-your-affective-visualization">g. Sharing your affective visualization</h2>
+<p>This is a component you will complete in workshop during week 10. We will be taking attendance that day.</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
