@@ -22,15 +22,15 @@ suppressPackageStartupMessages({
   library(broom) # reads in broom package
   library(performance) # reads in performance package
   library(DHARMa) # reads in DHARMa package
-  library(tibble)
-  library(knitr)
-  library(ggeffects)
+  library(tibble) # reads in tibble package
+  library(knitr) # reads in knitr package
+  library(ggeffects) # reads in ggeffects package
   })
 # Stores the kelp data as an object called kelp
 kelp <- read.csv(here('data',"Annual_Kelp_All_Years_20250903.csv")) 
-# 
+# Stores the nest site selection data as an object called mopl
 mopl <- read.csv(here('data',"MOPL_nest-site_selection_Duchardt_et_al._2019.csv")) 
-#
+# Stores the personal data as an object called personal_data
 personal_data <- read.csv(here('data',"193DS data - stress (6).csv")) 
 ```
 
