@@ -50,7 +50,7 @@ What statistical tests did your co-worker use?
 
 Clearly connect the test to the part that you are addressing (e.g. “In part 1, they used _______. In part 2, they used _______.”).
 
-In **part 1**, they most likely used a simple linear regression ($H_0$:  the predictor variable does not predict the response; $H_A$: the predictor variable does predict the response) because the statement asks whether precipitation predicts flooded wetland area, which is a continuous response variable. In **part 2**, they most likely used a Kruskal–Wallis rank-sum test ($H_0$: sample 1 median = sample 2 median = sample 3 median ....; $H_A$: at least 2 sample medians are different form each other), because the statement compares median flooded wetland area across more than two groups of water year classification (wet, above normal, below normal, dry, critical drought).
+In **part 1**, they most likely used a simple **linear regression** ($H_0$: precipitation does not predict flooded wetland area; $H_A$: precipitation does flooded wetland area) because the statement asks whether precipitation predicts flooded wetland area, which is a continuous response variable. In **part 2**, they most likely used a **Kruskal–Wallis rank-sum test** ($H_0$: sample 1 median = sample 2 median = sample 3 median ....; $H_A$: at least 2 sample medians are different form each other), because the statement compares median flooded wetland area across more than two groups of water year classification (wet, above normal, below normal, dry, critical drought).
 
 ## b. Figure needed
 
@@ -60,7 +60,7 @@ Describe one figure that your coworker could make to accompany the statement in 
 
 Be specific about what variables should be on the x-axis, the y-axis, and the visual components of the plot as they relate to the test in *addition* to naming the type of plot they should make.
 
-A good figure for part 2 would be a **boxplot** with **jittered points**. The **x-axis** would be water year classification (wet, above normal, below normal, dry, critical drought). The **y-axis** would be flooded wetland area ($m^2$). **Visual components** of this plot should include: one boxplot for each water year class showing the median and interquartile range, with individual observations overlaid as jittered points so the reader can see spread, overlap, and sample size across categories. This would match the **Kruskal–Wallis** test well because it helps visualize how the distributions and medians compare across groups which is what the test aimns to discover.
+A good figure for part 2 would be a **boxplot** with **jittered points**. The **x-axis** would be water year classification (wet, above normal, below normal, dry, critical drought) and the **y-axis** would be flooded wetland area ($m^2$). **Visual components** of this plot should include: one boxplot for each water year class showing the median and interquartile range, with individual observations overlaid as jittered points so the reader can see spread, overlap, and sample size across categories. This would match the **Kruskal–Wallis** test well because it visually compares the distributions and medians of flooded wetland area across multiple groups.
 
 ## c. Suggestions for rewriting
 
@@ -70,10 +70,9 @@ Be sure that your rewritten statements clearly delineate the *biological narrati
 
 Note that your co-worker didn’t include any information about the test statistic, distribution, etc., and that you only know the p-value. For any part that you do not know, list that part with text. For example, you could write something like: “… $\alpha$**=significance level**…”
 
-**Part 1**: Flooded wetland area did not show clear evidence of a relationship with precipitation in this analysis. The statistical test did not provide sufficient evidence to reject the null hypothesis of no association between precipitation and flooded wetland area (Linear regression, F(degrees freedom (numerator), degrees freedom (denominator)) =  test-statistic (F), $R^2$ = R-squared, p = 0.11, $\alpha$ = significance level).
+**Part 1**: Flooded wetland area did not show clear evidence of a relationship with precipitation. The statistical test did not provide sufficient evidence to reject the null hypothesis of no association between precipitation and flooded wetland area (Linear regression, F(degrees freedom (numerator), degrees freedom (denominator)) =  test-statistic (F), $R^2$ = R-squared, p = 0.11, $\alpha$ = significance level).
 
-
-**Part 2**: Median flooded wetland area did not differ significantly among water year classifications (wet, above normal, below normal, dry, critical drought). The statistical test did not provide sufficient evidence to reject the null hypothesis that median flooded wetland area was the same across wet, above normal, below normal, dry, and critical drought years (Kruskal–Wallis test, $\chi^2$(degrees of freedom) = test-statistic (H), p = 0.12, $\alpha$ = significance level)
+**Part 2**: Median flooded wetland area did not differ significantly among water year classifications (wet, above normal, below normal, dry, critical drought). The statistical test did not provide sufficient evidence to reject the null hypothesis that median flooded wetland area was the same across all water year classifications (Kruskal–Wallis test, $\chi^2$(degrees of freedom) = test-statistic (H), p = 0.12, $\alpha$ = significance level)
 
 ## d. Interpretation
 
@@ -85,7 +84,8 @@ In 1-2 sentences, outline:
 - what *type* of variable it is, and
 - *why* that variable might influence wetland flooding.
 
-One additional variable that could influence flooded wetland area is **water-control management intensity**, such as whether managers actively impound or deliver water to wetlands. This would likely be a categorical explanatory variable, and it could influence flooding because the paper emphasizes that wetland extent in this system is shaped not only by precipitation but also by management actions and infrastructure that control water delivery and retention.
+
+One additional variable that could influence flooded wetland area is **water-control management intensity**, such as whether managers actively impound or deliver water to wetlands. This would likely be a categorical explanatory variable, and it could affect flooding because management infrastructure and water-delivery decisions can directly impact how much water is retained in wetlands.
 
 # Problem 2. Data visualization
 
@@ -116,7 +116,7 @@ kelp_clean <- kelp |> # uses raw data
   filter(site %in% c("IVEE", "NAPL", "CARP")) |>  
   # remove observations with specified values for each date, transect, and quad
   filter(!(date == "2000-09-22" & transect == "6" & quad == "40")) |>
-  # create column 'cite_name' with appropriate site names associated site codes
+  # create column 'site_name' with appropriate site names associated site codes
   mutate(site_name = case_when(site == "NAPL" ~ "Naples",
                                site == "IVEE" ~ "Isla Vista",
                                site == "CARP" ~ "Carpinteria")) |>
@@ -140,7 +140,7 @@ The code chunk above includes a line that filters out frond observations from th
 
 In 1-2 sentences, describe why. What is the number for the value of fronds in that “quad” in that “transect”? What does that value represent? Reference the specific place you found information on what that value represents (e.g. in the Summary tab of the data page).
 
-The observation from 2000-09-22 in transect 6, quad 40 is filtered out because the recorded value is -99999 which is a placeholder value rather than a real biological measurement. In the "Files and Data Links" tab the table row "Others" lists the value -99999 as a "Missing Value Code", meaning that the number of kelp fronds was not actually measured or recorded for that quadrat, so it should be removed before calculating summary statistics.
+The observation from `2000-09-22` in transect 6, quad 40 is filtered out because the recorded value is -99999 which is a placeholder value rather than a real biological measurement. In the "Files and Data Links" tab the table row "Others" identifies the value -99999 as a "Missing Value Code", meaning the frond count was not actually recorded for that quadrat and should be excluded from summary statistics.
 
 ## c. Visualize the data
 
@@ -156,33 +156,35 @@ The specific aesthetic components you need to recreate are:
 - use of a custom font (that is consistent across all text in the figure)
 
 ```{r}
-# xxxx don't forget to comment
+# loads the font "Lato" and names it "lato" for later use 
 font_add_google("Lato", "lato")
+# enables showtext
 showtext_auto()
 
-ggplot(kelp_clean, aes(x = year, y = mean_fronds, color = site_name)) +
-  geom_line(linewidth = 0.6) +                 
-  geom_point(size = 2.6) +                   
-  scale_color_manual(
-    values = c(
-      "Naples" = "cyan4",
-      "Isla Vista" = "goldenrod4",
-      "Carpinteria" = "grey60"),
-    name = "Site") +
+ggplot(kelp_clean, # uses cleaned data
+       aes(x = year, # sets x-axis to year
+           y = mean_fronds, # sets y-axis to mean_fronds
+           color = site_name)) + # colors lines by site
+  geom_line(linewidth = 0.6) + # creates lines connecting yearly mean values            
+  geom_point(size = 2.6) +  # adds points for each yearly mean frond value               
+  scale_color_manual( # manually assign custom colors to each site
+    values = c("Naples" = "cyan4",
+               "Isla Vista" = "goldenrod4",
+               "Carpinteria" = "grey60"),
+    name = "Site") + # sets title of legend 
   labs(
-    title = "Sites vary in mean kelp fronds per year",
-    x = "Year",
-    y = "Mean kelp fronds per year"
-  ) +
-  scale_x_continuous(breaks = seq(2000, 2025, by = 5)) +
-  theme_minimal(base_family = "lato") +
+    title = "Sites vary in mean kelp fronds per year", # sets plot title
+    x = "Year", # sets x-axis title
+    y = "Mean kelp fronds per year") + # sets y-axis title
+  # sets scale of labeling x-axis for every 5 years from 2000-2025
+  scale_x_continuous(breaks = seq(2000, 2025, by = 5)) + 
+  theme_minimal(base_family = "lato") + # applies minimal theme + uses Lato font 
   theme(
     plot.title = element_text(hjust = 0.5),  # centered title
-    legend.position = "right",                          # legend outside right
-    panel.border = element_blank(),                     # no panel border
-    text = element_text(family = "lato"))
+    legend.position = "right", # legend outside right
+    panel.border = element_blank(), # no panel border
+    text = element_text(family = "lato")) # ensures all text uses the Lato font
 ```
-
 
 ## d. Interpretation
 
@@ -198,18 +200,22 @@ In 1-2 sentences each, describe:
 
 **Carpinteria** shows the least variability in mean kelp fronds per year. The Carpinteria line and points (colored in grey) stay within a relatively narrow vertical range and are generally between about 3 and 17 fronds with more gradually changes across years compared with the other sites.
 
-
 # Problem 3. Data analysis
 
-```{r}
-# figure out how to exclude
-mopl_explore <- mopl |>
-  clean_names() |>
+```{r results=hide}
+#| include: false
+
+mopl_explore <- mopl |> # uses original data 
+  # standardizes column names to lowercase and replaces spaces with underscores
+  clean_names() |> 
+  # creates binary response variable with: used = 1, available = 0
   mutate(nest_use = if_else(id == "used", 1, 0))
-mopl_mod <- glm(nest_use ~ edgedist + vo_nest,
-               data = mopl_explore,
-               family = "binomial")
-plot(simulateResiduals(mopl_mod))
+mopl_mod <- glm(nest_use ~ edgedist + vo_nest, # predicts nest use w/ both predictors
+               data = mopl_explore, # uses cleaned data
+               family = "binomial") # logistic regression for binary response
+# display the DHARMa diagnostic plots for the simulated residuals
+plot(simulateResiduals(mopl_mod)) 
+# outputs summary of the model
 summary(mopl_mod)
 ```
 
@@ -217,7 +223,7 @@ summary(mopl_mod)
 
 In 1-2 sentences, explain what the 1s and 0s mean in this data set biologically.
 
-In this dataset, the response variable is nesting habitat (nest site use vs. non-use) where	a 1 would represent a site that **was used** by a Mountain Plover for nesting, and a 0 would represent an available but **unused** site. In the raw dataset, this information comes from the ID column, which is coded as "used" and "available".
+In this dataset, the response variable is nest site use (nest site use vs. non-use) where	a 1 would represent a site that **was used** by a Mountain Plover for nesting, and a 0 would represent an available but **unused** site. In the raw dataset, this information comes from the ID column, which is coded as "used" and "available".
 
 ## b. Purpose of study
 
@@ -230,11 +236,11 @@ In 2-3 sentences for each predictor, describe:
 - where in the paper you found this information (the specific section, subsection, and paragraph)
 
 **Predictor 1: Visual Obstruction** (`vo_nest`)
-This is **continuous** predictor because it is the "height at which the vegetation is sufficiently dense to obscure a 2.5-cm wide pole when viewed from a 1-m height." As visual obstruction increases, the probability of Mountain Plover nest-site use would decrease, because plovers generally prefer nesting habitat with short, sparse vegetation and avoid areas where vegetation is dense enough to obstruct visibility. Additionally, the article states that, "plovers avoided nesting in areas with a maximum vegetation height >11 cm, corresponding with an average visual obstruction of >5 cm" (Discussion Section Paragraph 4).
+This is **continuous** predictor because it measures (in cm) the "height at which the vegetation is sufficiently dense to obscure a 2.5-cm wide pole when viewed from a 1-m height." As visual obstruction increases, the probability of Mountain Plover nest-site use would likely decrease, because plovers generally prefer open habitat with short, sparse vegetation that allow them to detect predators. Additionally, the article states that, "plovers avoided nesting in areas with a maximum vegetation height >11 cm, corresponding with an average visual obstruction of >5 cm" (Discussion Section Paragraph 4).
 
 **Predictor 2: Distance to Prairie Dog Colony Edge** (`edgedist`)
 
-This is a **continuous** predictor, because it is the measured distance from each site to the colony edge. As distance to the prairie dog colony edge increases, the probability of Mountain Plover nest-site use would  decrease, because nests nearer colony edges may give plovers easier access to complementary resources outside colonies: "taller vegetation may provide protection from predators (Schneider et al. 2006), while vegetation and shrubs may provide better opportunities for thermoregulation, especially important for chicks" (Discussion Section Paragraph 4).
+This is a **continuous** predictor, because it is the measured distance from each site to the edge of a prairie dog colony. As distance to the prairie dog colony edge increases, the probability of Mountain Plover nest-site use would likely decrease, because nests nearer colony edges create disturbed, sparsely vegetated habitat that plovers prefer for nesting. According to the article, "taller vegetation may provide protection from predators (Schneider et al. 2006), while vegetation and shrubs may provide better opportunities for thermoregulation, especially important for chicks" (Discussion Section Paragraph 4).
 
 ## c. Table of models
 
@@ -242,12 +248,12 @@ Make a table of all the models you will need to run. You will run 4 models: a nu
 
 Your table should have 4 columns: (1) model number, (2) visual obstruction, (3) distance to prairie dog colony, and (4) model description.
 
-| model # | visual obs. | distance to prairie dog colony |model_description
-|---------|-------------|--------------------------------| --------------------|
-| 1       | No          | No                             | null model          |
-| 2       | Yes         | Yes                            | saturated model     | 
-| 3       | Yes         | No                             | visual obs.         |
-| 4       | No          | Yes                            | distance only       | 
+| model # | visual obs. | distance to prairie dog colony |model_description             |
+|---------|-------------|--------------------------------| -----------------------------|
+| 1       | No          | No                             | null model                   |
+| 2       | Yes         | Yes                            | saturated model              | 
+| 3       | Yes         | No                             | visual obstruction only      |
+| 4       | No          | Yes                            | distance to colony edge only | 
 
 
 ## d. Run the models
@@ -261,29 +267,30 @@ Create a clean dataset to use called `mopl_clean`. In no particular order:
 Write your code to run all your models. Do not display any output.
 
 ```{r results=hide}
-mopl_clean <- mopl |>
-  clean_names() |>  # make column names lowercase and consistent
+mopl_clean <- mopl |> # creates cleaned data for modeling
+  clean_names() |>  # makes column names column names lowercase with underscores
+  # creates binary response variable with: used = 1, available = 0
   mutate(used_bin = if_else(id == "used", 1, 0)) |>
   select(used_bin, edgedist, vo_nest)  # keep only variables needed for modeling
 # Model 1: null model
-mod_1 <- glm(used_bin ~ 1, 
-             data = mopl_clean, 
-             family = binomial)
+mod_1 <- glm(used_bin ~ 1, # predicts nest use with intercept only
+             data = mopl_clean, # uses cleaned data
+             family = binomial) # logistic regression for binary response
 
-# Model 2: saturated model
-mod_2 <- glm(used_bin ~ edgedist + vo_nest, 
-             data = mopl_clean, 
-             family = binomial)
+# Model 2: saturated model (both predictors)
+mod_2 <- glm(used_bin ~ edgedist + vo_nest, # predicts nest use w/ both predictors
+             data = mopl_clean, # uses cleaned data
+             family = binomial) # logistic regression for binary response
 
 # Model 3: edgedist only
-mod_3 <- glm(used_bin ~ edgedist,
-             data = mopl_clean,
-             family = binomial)
+mod_3 <- glm(used_bin ~ edgedist, # predicts nest use w/ only edgedist
+             data = mopl_clean, # uses cleaned data
+             family = binomial) # logistic regression for binary response
 
 # Model 4: vo_nest only
-mod_4 <- glm(used_bin ~ vo_nest,
-             data = mopl_clean,
-             family = binomial)
+mod_4 <- glm(used_bin ~ vo_nest, # predicts nest use w/ only vo_nest
+             data = mopl_clean, # uses cleaned data
+             family = binomial) # logistic regression for binary response
 ```
 
 
@@ -299,7 +306,7 @@ In text, write what the best model was (i.e. “The best model as determined by 
 
 **Use the predictors and the response variable to describe the model**, not the model number that you assigned.
 
-The best model out of the 4 as determined by Akaike’s Information Criterion (AIC) was the model predicting probability of Mountain Plover nest site using only the variable `vo_nest` (visual obstruction height). This model had the lowest AIC value (331.77) compared with the models indicating that visual obstruction alone provided the best balance between model fit and complexity.
+The best model as determined by Akaike’s Information Criterion (AIC) was the model predicting the probability of Mountain Plover nest site using only the variable `vo_nest` (visual obstruction height). This model had the lowest AIC value (331.77) indicating that visual obstruction alone provided the best balance between model fit and complexity among the candidate models.
 
 ## f. Check the diagnostics
 Check your diagnostics for the model you selected using simulated residuals from the `DHARMa` package.
@@ -307,9 +314,13 @@ Check your diagnostics for the model you selected using simulated residuals from
 Display all code and output.
 
 ```{r}
+# save the selected best model by the AIC as object `best_model`
 best_model <- mod_4
+# display the DHARMa diagnostic plots for the simulated residuals
 simulateResiduals(best_model, plot = TRUE)
 ```
+
+These plots assess whether the simulated residuals show major deviations from model assumptions. The DHARMa residual vs. predicted output shows that "no significant problems are detected". The residuals in the QQ plot approximately follow the reference line.
 
 ## g. Visualize the model predictions
 
@@ -324,44 +335,48 @@ For full credit:
 - use colors that are different from the default
 
 ```{r}
-mod_preds <- ggpredict(mod_4, terms = "vo_nest [0:20 by = 1]")
+# generate predicted probabilities 
+mod_preds <- ggpredict(mod_4, # uses selected 'best' model
+                       # uses vo_nest values from 0 to 20 by 1
+                       terms = "vo_nest [0:20 by = 1]") 
 
-ggplot(mopl_clean,
-       aes(x = vo_nest,
-           y = used_bin)) +
-  geom_jitter(size = 3,
-              alpha = 0.4,
-              color = "magenta3",
-              height = 0.03,
-              width = 0) +
-  geom_ribbon(data = mod_preds,
-              aes(x = x,
-                  y = predicted,
-                  ymin = conf.low,
-                  ymax = conf.high),
-              inherit.aes = FALSE,
-              alpha = 0.4,
-              fill = "cyan2") +
-  geom_line(data = mod_preds,
-            aes(x = x,
-                y = predicted),
-            inherit.aes = FALSE,
-            linewidth = 1,
-            color = "purple4") +
-  labs(x = "Visual obstruction height at nest (cm)",
-       y = "Probability of Mountain Plover nest site use",
+ggplot(mopl_clean, # uses cleaned data
+       aes(x = vo_nest, # x-axis is vo_nest
+           y = used_bin)) + # y-axis is binary column for nest use
+  geom_jitter(size = 3, #  adds jittered data points + sets size
+              alpha = 0.4, # sets transparency for points
+              color = "magenta3", # sets point color
+              height = 0.03, # sets vertical height of jitter
+              width = 0) + # does not jitter horizontally
+  geom_ribbon(data = mod_preds, # uses model predictions as data for CI ribbon
+              aes(x = x, # x is x values (vo_nest)
+                  y = predicted, # y is probability (nest use )
+                  ymin = conf.low, # sets low end of CI
+                  ymax = conf.high), # sets high end of CI
+              inherit.aes = FALSE, # does not inherit aesthetics
+              alpha = 0.4, # sets transparency for ribbon
+              fill = "cyan2") + # sets color for ribbon
+  geom_line(data = mod_preds, # uses model predictions as data for line
+            aes(x = x, # x is x values (vo_nest)
+                y = predicted), # y is probability (nest use )
+            inherit.aes = FALSE, # does not inherit aesthetics
+            linewidth = 1, # sets line width
+            color = "purple4") + # sets color of line
+  labs(x = "Visual obstruction height at nest (cm)", # sets title for x-axis
+       y = "Probability of Mountain Plover nest site use", # sets title for y-axis
+       # sets plot title
        title = "Predicted probability of Mountain Plover nest site use") +
-  scale_y_continuous(limits = c(0, 1),
-                     breaks = c(0, 1)) +
-  theme_minimal() +
-  theme(panel.grid = element_blank())
+  # set the y-axis to show the full probability range from 0 to 1
+  scale_y_continuous(limits = c(0, 1), breaks = c(0, 1)) +
+  theme_classic() + # sets theme
+  theme(panel.grid = element_blank()) # remove any gridlines
 ```
 
 ## h. Write a caption for your figure.
 
 Include a figure number, title, description of the figure, and data citation.
 
-**Figure 1. Predicted probability of Mountain Plover nest site use decreases as visual obstruction at the nest increases.** Transparent pink circles (jittered points) represent individual observations of available and used nest sites, plotted as binary outcomes (0 = available, 1 = used) against visual obstruction height at the nest (cm). The dark purple line represents the fitted predicted probability of nest site use from the selected logistic regression model, and the light blue ribbon represents the associated 95% confidence interval around those predictions. Data originally from: Duchardt, Courtney; Beck, Jeffrey; Augustine, David (2020). Data from: Mountain Plover habitat selection and nest survival in relation to weather variability and spatial attributes of Black-tailed Prairie Dog disturbance [Dataset]. Dryad. <https://doi.org/10.5061/dryad.ttdz08kt7>
+**Figure 1. Predicted probability of Mountain Plover nest site use decreases as visual obstruction at the nest increases.** Transparent pink circles (jittered points) represent individual observations of available and used nest sites, plotted as binary outcomes (0 = available, 1 = used) against visual obstruction height at the nest (cm). The dark purple line represents the fitted predicted probability of nest site use from the selected logistic regression model, and the light blue ribbon represents the associated 95% confidence interval around those predictions. Data originally from: Duchardt, Courtney; Beck, Jeffrey; Augustine, David (2020). Data from: Mountain Plover habitat selection and nest survival in relation to weather variability and spatial attributes of Black-tailed Prairie Dog disturbance [Dataset]. Dryad. <https://doi.org/10.5061/dryad.ttdz08kt7>.
 
 ## i. Calculate model predictions
 
@@ -370,10 +385,12 @@ Calculate the predicted probability of Mountain Plover nest site occupancy at 0 
 Show and annotate all code. Display the output.
 
 ```{r}
-ggpredict(mod_4, terms = "vo_nest [0]")
+# calculates the predicted probability of nest-site occupancy
+ggpredict(mod_4, # uses AIC selected 'best' model
+          terms = "vo_nest [0]") # specifies when visual obstruction = 0
 ```
 
-If the index of visual obstruction is 0, the predicted probability of Mountain Plover nest site occupancy is 0.73 (95% CI [0.65, 0.80]).
+When visual obstruction at the nest is 0 cm, the predicted probability of Mountain Plover nest site occupancy 0.73 (95% CI [0.65, 0.80]).
 
 ## j. Interpret your results
 
@@ -383,7 +400,7 @@ Write 3-5 sentences summarizing what you found, making references to the figure 
 - what relationships, if any, exist between visual obstruction and distance to prairie dog colony and probability of occupancy
 - the biology behind the trends you found - what explains the relationship between visual obstruction and probability of Mountain Plover nest site occupancy?
 
-The probability of Mountain Plover nest site occupancy was highest when there was no visual obstruction at the nest: at `vo_nest` = 0, the model predicted an occupancy probability of about 0.73 (95% CI [0.65, 0.80]), meaning a site with completely open visibility had a roughly 73% chance of being used. As shown in **Figure 1. Predicted probability of Mountain Plover nest site use decreases as visual obstruction at the nest increases.**, the predicted probability of nest site use decreased sharply as visual obstruction increased, with the fitted line (purple) dropping toward 0 and the 95% confidence ribbon (blue) following the same downward trend. In contrast, distance to prairie dog colony edge was not part of the best-supported model, which suggests it did not explain nest-site occupancy as well as visual obstruction in this dataset. Biologically, this pattern makes sense because Mountain Plovers are birds of open, sparsely vegetated habitat, so low visual obstruction likely improves their ability to detect predators and is more consistent with the short-structure nesting habitat they prefer.
+The probability of Mountain Plover nest site occupancy was highest when there was no visual obstruction at the nest: at `vo_nest` = 0, the model predicted an occupancy probability of about 0.73 (95% CI [0.65, 0.80]), meaning a site with completely open visibility had about a 73% chance of being used. As shown in **Figure 1**, the predicted probability of nest site use decreased sharply as visual obstruction increased, with the fitted line (purple) dropping toward 0 and the 95% confidence ribbon (blue) representing the uncertainty around that decline. In contrast, distance to prairie dog colony edge was not part of the best model (determined by AIC), which suggests it did not explain nest-site occupancy as well as visual obstruction in this dataset. Biologically, this pattern is consistent with Mountain Plover preference of open, sparsely vegetated nesting habitat, so low visual obstruction may improves their ability to detect predators and is a better match to the short nesting habitat they tend to prefer.
 
 # Problem 4. Affective and exploratory visualizations
 ## a. Comparing visualizations
@@ -392,7 +409,7 @@ Compare and contrast your affective visualization from Homework 3 and the explor
 
 - How are the visualizations different from each other in the way you have represented your data?
 
-The exploratory visualizations from Homework 2 focus on clearly displaying the underlying data and statistical relationships using simple and straightforward plots (boxplots and scatterplots). In contrast, the affective visualization from Homework 3 represents the data more abstractly using color, pattern, and opacity to evoke a visual impression rather than emphasizing exact numeric values. This shifts the focus from statistical interpretation to communicating the overall feeling or magnitude of patterns.
+The exploratory visualizations from Homework 2 focus on clearly displaying the underlying data and statistical relationships using simple and straightforward plots (boxplots and scatterplots). In contrast, the affective visualization from Homework 3 represents the data more abstractly using color, pattern, and opacity to evoke a visual impression rather than emphasizing exact numeric values. This shifts the focus from precise statistical interpretation to communicating the overall intensity or variation in stress and sleep patterns.
 
 - What similarities do you see between all your visualizations?
 
@@ -400,11 +417,11 @@ All of the visualizations I created are based on the same underlying dataset abo
 
 - What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?
 
-The exploratory plots show that time streesed tends to vary across days of the week and that there is some relationship between time slept and time stressed. The affective visualization communicates a similar pattern but in a more abstract way, suggesting variation in stress intensity through color variation rather than exact values. The underlying patterns are the same because the data remain unchanged, but the exploratory plots make the patterns clearer because they retain the quantitative scale while the affective is more emotional in nature.
+The exploratory plots show that time stressed tends to vary across days of the week and that there is some relationship between time slept and time stressed. The affective visualization communicates a similar pattern but in a more abstract way, suggesting variation in stress intensity through color variation rather than exact values. The underlying patterns are the same because the data remain unchanged, but the exploratory plots make the patterns clearer because they retain the quantitative scale and use exact values while the affective visualization is more emotional in nature.
 
 - What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
 
-During week 9 I received 2 main pieces of feedback from my group: consider changing the represenation of sleep efficiency through opacity so that differences in efficiency are easier to see visaully & add something to it that relates to your theme of tracking sleep data. As a result, I scaled my efficiency scores using the equation $opacity=0.2+\frac{x-0.51}{0.95-0.51}*0.8$ (maximum efficiency = 95%, minimum efficiency = 51%) to better emphasize differences in efficiency and added a night sky background behind my color strips to coincide with the topic of my data as well as increase its creativity.
+During week 9 I received 2 main pieces of feedback from my group: consider changing the representation of sleep efficiency through opacity so that differences in efficiency are easier to see visually & add something to it that relates to your theme of tracking sleep data. As a result, I scaled my efficiency scores using the equation $opacity=0.2+\frac{x-0.51}{0.95-0.51}*0.8$ (maximum efficiency = 95%, minimum efficiency = 51%) to better emphasize differences in efficiency and added a night sky background behind my color strips to coincide with the topic of my data as well as increase its creativity.
 
 
 ## b. Designing an analysis
@@ -419,7 +436,7 @@ Additionally, explain *why* this analysis is appropriate with regard to:
 
 **Proposed analysis: Linear regression**
 
-A linear regression analysis could be used to test how sleep efficiency (predictor variable) predicts total time slept (response variable). This analysis is appropriate because my research question asks whether changes in one continuous variable (sleep efficiency) are associated with changes in another continuous variable (time slept). Since both variables are numeric and measured on continuous scales, linear regression will allow me to model their relationship and estimate how increases or decreases in efficiency are associated with changes in sleep duration.
+A linear regression analysis could be used to test how sleep efficiency (predictor variable) predicts total time slept (response variable). This analysis is appropriate because my research question asks whether changes in one continuous variable (sleep efficiency) are associated with changes in another continuous variable (time slept). Since both variables are numeric and measured on continuous scales, linear regression allows me to model time slept as a function of sleep efficiency and estimate how changes in sleep efficiency are associated with changes in sleep duration.
 
 ## c. Check any assumptions and run your analysis
 In this section, create two subsections (in the appropriate order) to:
@@ -428,57 +445,71 @@ Show all code and output.
 - check any assumptions
 
 ```{r}
-personal_data_clean <-personal_data |> 
-  clean_names() |>
-  mutate(sleep_efficiency = as.numeric(str_remove(sleep_efficiency, "%")),
-         time_slept_minutes = time_slept_minutes) |>
-  select(time_slept_minutes, sleep_efficiency) |>
-  drop_na()
+# Cleaning Data
+personal_data_clean <-personal_data |> # uses initial personal data
+  # standardizes column names to lowercase and replaces spaces with underscores
+  clean_names() |> 
+  # mutates sleep efficiency to be a numeric variable
+  mutate(sleep_efficiency = as.numeric(str_remove(sleep_efficiency, "%"))) |>
+  # selects only time_slept_minutes + sleep_efficiency
+  select(time_slept_minutes, sleep_efficiency)
 
-sleep_lm <- lm(time_slept_minutes ~ sleep_efficiency, data = personal_data_clean)
+# creates model with sleep_efficiency as the predictor
+sleep_lm <- lm(time_slept_minutes ~ sleep_efficiency, 
+               data = personal_data_clean) # uses cleaned data
 
-# look at model diagnostics
+# looks at model diagnostics
 par(mfrow = c(2, 2))
 plot(sleep_lm)
 par(mfrow = c(1, 1))
 
-# scatterplot to assess linearity
-ggplot(personal_data_clean, 
-       aes(x = sleep_efficiency, y = time_slept_minutes)) +
-  geom_point(color = "darkgreen", size = 2.5, alpha = 0.7) +
-  geom_smooth(method = "lm", se = TRUE, color = "black") +
-  labs(
-    x = "Sleep efficiency (%)",
-    y = "Time slept (minutes)",
-    title = "Relationship between sleep efficiency and time slept"
-  ) +
-  theme_minimal()
+# scatter plot to assess linearity
+ggplot(personal_data_clean, # uses cleaned data 
+       aes(x = sleep_efficiency, # x-axis is sleep efficiency (predictor)
+           y = time_slept_minutes)) + # y-axis is time slept (min) (response)
+  geom_point(color = "magenta3", # sets point color for each obs
+             size = 2.5, # sets point size 
+             alpha = 0.7) + # sets point transparency
+  # creates purple fit line of linear regression model
+  geom_smooth(method = "lm", se = FALSE, color = "purple") +
+  labs(x = "Sleep efficiency (%)", # labels x-axis
+       y = "Time slept (minutes)", # labels y-axis
+       # creates title of the plot
+       title = "Relationship between sleep efficiency and time slept") +
+  theme_minimal() # sets theme to minimal
 ```
-there is one outlier I will remove it and recheck assumptions 
+There is one outlier as indicated by the scale-location plot and scatter plot. I will remove the outlier and recheck the assumptions of the updated model.
 ```{r}
-personal_data_no_outlier <- personal_data_clean |>
-  filter(time_slept_minutes != 230)  # remove the outlier
+personal_data_no_outlier <- personal_data_clean |> # uses cleaned data
+  filter(time_slept_minutes != 230)  # remove the low-sleep outlier
 
-updated_sleep_lm <- lm(time_slept_minutes ~ sleep_efficiency, data = personal_data_no_outlier)
+# creates model with sleep_efficiency as the predictor
+updated_sleep_lm <- lm(time_slept_minutes ~ sleep_efficiency, 
+                       # uses cleaned data with the outlier removed
+                       data = personal_data_no_outlier)
 
+# looks at model diagnostics
 par(mfrow = c(2, 2))
 plot(updated_sleep_lm)
 par(mfrow = c(1, 1))
 
 # scatterplot to assess linearity
-ggplot(personal_data_no_outlier, 
-       aes(x = sleep_efficiency, y = time_slept_minutes)) +
-  geom_point(color = "darkgreen", size = 2.5, alpha = 0.7) +
-  geom_smooth(method = "lm", se = TRUE, color = "black") +
-  labs(
-    x = "Sleep efficiency (%)",
-    y = "Time slept (minutes)",
-    title = "Relationship between sleep efficiency and time slept"
-  ) +
-  theme_minimal()
+ggplot(personal_data_no_outlier, # uses cleaned data with the outlier removed
+       aes(x = sleep_efficiency, # x-axis is sleep efficiency (predictor)
+           y = time_slept_minutes)) + # y-axis is time slept (min) (response)
+  geom_point(color = "magenta3", # sets point color for each obs
+             size = 2.5, # sets point size 
+             alpha = 0.7) + # sets point transparency
+  # creates purple fit line of linear regression model
+  geom_smooth(method = "lm", se = FALSE, color = "purple") +
+  labs(x = "Sleep efficiency (%)", # labels x-axis
+       y = "Time slept (minutes)", # labels y-axis
+       # creates title of the plot
+       title = "Relationship between sleep efficiency and time slept") +
+  theme_minimal() # sets theme to minimal
 ```
 
-The linearity assumption appears reasonably met because the residuals vs fitted plot does not show a strong curved pattern, although there is some scatter and a few unusual points. The normality and homoscedasticity (consistentcy across values) assumptions are reasonably satisfied although the Q–Q plot shows some deviation in the tails, and the scale-location plot suggests some uneven spread in residuals.
+The linearity assumption appears reasonably met because the scatterplot of sleep efficiency versus time slept and the residuals vs. fitted plot does not show a strong curved pattern, indicating that a linear relationship is present The normality assumption is reasonably met because the Q–Q plot shows residuals that generally follow the reference line, with only minor deviations in the tails. The homoscedasticity assumption appears to be met because the scale-location plot shows relatively consistent spread of residuals across fitted values. Independence of errors is assumed because each observation represents a different day of sleep data and therefore observations are not expected to influence each other.
 
 Removing the outlier with `time_slept_minutes` = 230 was done because it is substantially lower than the rest of the observations and would have a disproportionate influence on model fit and residual behavior. Since linear regression is sensitive to extreme points, excluding this value improves the diagnostics and makes the model a better representation of the overall relationship between sleep efficiency and time slept for the majority of the data.
 
@@ -486,7 +517,9 @@ Removing the outlier with `time_slept_minutes` = 230 was done because it is subs
 - (if applicable) calculate an effect size
 
 ```{r}
+# outputs summary of linear model to run analysis
 summary(updated_sleep_lm)
+# (effect size determined by R-sqaured output in summary)
 ```
 
 
@@ -503,43 +536,34 @@ For full marks, your plot should:
 
 
 ```{r}
-
-model_preds <- ggpredict(
-  updated_sleep_lm,
-  terms = "sleep_efficiency")
-
+# generate predictions based on linear model 
+model_preds <- ggpredict(updated_sleep_lm, # uses updated model
+                         # predictions based on sleep_efficiency 
+                         terms = "sleep_efficiency") 
 # create plot
-ggplot(personal_data_no_outlier,
-       aes(x = sleep_efficiency,
-           y = time_slept_minutes)) +
-  geom_point(
-    color = "magenta",
-    size = 3,
-    alpha = 0.6
-  ) +  # underlying data
-  geom_ribbon(
-    data = model_preds,
-    aes(x = x,
-        y = predicted,
-        ymin = conf.low,
-        ymax = conf.high),
-    inherit.aes = FALSE,
-    fill = "cyan3",
-    alpha = 0.35
-  ) +  # 95% confidence interval
-  geom_line(
-    data = model_preds,
-    aes(x = x,
-        y = predicted),
-    inherit.aes = FALSE,
-    color = "purple",
-    linewidth = 1.2
-  ) +  # fitted regression line
-  labs(
-    x = "Sleep efficiency (%)",
-    y = "Time slept (minutes)",
-    title = "Time slept increases with sleep efficiency"
-  ) +
+ggplot(personal_data_no_outlier, # uses cleaned data with the outlier removed
+       aes(x = sleep_efficiency, # x-axis is sleep efficiency (predictor)
+           y = time_slept_minutes)) + # y-axis is time slept (min) (response)
+  geom_point(color = "magenta3", #  adds magenta data points for each obs
+             size = 3, # sets point size
+             alpha = 0.6) + # sets point transparently
+  geom_ribbon(data = model_preds, # uses model predictions as data for CI ribbon
+              aes(x = x, # x is x values (sleep_efficiency)
+                  y = predicted, # y is predicted values (time_slept_minutes)
+                  ymin = conf.low, # sets low end of CI
+                  ymax = conf.high), # sets high end of CI
+              inherit.aes = FALSE, # does not inherit aesthetics
+              alpha = 0.35, # sets transparency for ribbon
+              fill = "cyan2") + # sets color for ribbon
+  geom_line(data = model_preds, # uses model predictions for regression line
+            aes(x = x,  # x is x values (sleep_efficiency)
+                y = predicted), # y is predicted values (time_slept_minutes)
+            inherit.aes = FALSE, # does not inherit aesthetics
+            linewidth = 1.2, # sets line width
+            color = "purple") + # sets color of line
+  labs(x = "Sleep efficiency (%)", # sets x-axis title
+       y = "Time slept (minutes)", # sets y-axis title
+       title = "Time slept increases with sleep efficiency") + # sets plot title
   theme_classic()   # different from default theme
 ```
 
@@ -548,7 +572,7 @@ ggplot(personal_data_no_outlier,
 
 Write a caption for the figure you created in part d. Include a figure number, title, description of visual components (including but not limited to shapes, colors, lines, etc.).
 
-**Figure 2. Time slept increases with sleep efficiency.** Pink circles/points represent individual nightly observations of time slept (minutes) plotted against sleep efficiency (a percentage out of 100 as calculated by an Oura ringe). The purple line represents the fitted linear regression model predicting time slept from sleep efficiency, while the light blue shaded ribbon shows the 95% confidence interval around the model predictions. Together, the points, line, and shaded confidence band illustrate a statistically significant positive relationship ($\alpha$=0.05) between sleep efficiency and total sleep duration.
+**Figure 2. Time slept increases with sleep efficiency.** Pink circles/points represent individual nightly observations of time slept (minutes) plotted against sleep efficiency (a percentage out of 100 as calculated by an Oura Ring). The purple line represents the fitted linear regression model predicting time slept from sleep efficiency, while the light blue shaded ribbon shows the 95% confidence interval around the model predictions. Together, the points, line, and shaded confidence band illustrate a statistically significant positive relationship between sleep efficiency and total sleep duration.
 
 ## f. Write about your results
 
@@ -556,13 +580,10 @@ In 2-4 sentences, write about your results (with appropriate components in the p
 
 Include any components that would provide additional context to your interpretation (e.g. differences in means) or allow you to quantify the magnitude of effects (e.g. effect sizes).
 
-The linear regression showed a significant positive relationship between sleep efficiency and time slept (Linear regression, F(1, 53) =  27.7, $R^2$ = 0.33 , p < 0.001, $\alpha$ = 0.05). Based on model predictions, for each 1 unit (1 %) increase in sleep efficiency, we expect an increase in time slept of 5.83 ± 1.107 (SE) minutes. The model had an adjusted $R^2$ of 0.331, meaning sleep efficiency explained about 33.1% of the variation in time slept, which indicates a moderate effect size.
+The linear regression showed a significant positive relationship between sleep efficiency and time slept (Linear regression, F(1, 53) =  27.7, $R^2$ = 0.33 , p < 0.001, $\alpha$ = 0.05). Based on model predictions, for each 1 unit (1 %) increase in sleep efficiency, we expect an increase in time slept of 5.83 minutes (SE = 1.107). The model had an adjusted $R^2$ of 0.33, meaning sleep efficiency explained about 33% of the variation in time slept, which indicates a moderate effect size.
 
 ## g. Sharing your affective visualization
 
 This is a component you will complete in workshop during week 10. We will be taking attendance that day.
-```{r}
-sleep_efficiency) +
-scale_alpha_continuous(range = c(0.2, 1))
-```
+
 
