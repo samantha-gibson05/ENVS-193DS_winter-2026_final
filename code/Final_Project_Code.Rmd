@@ -50,7 +50,7 @@ What statistical tests did your co-worker use?
 
 Clearly connect the test to the part that you are addressing (e.g. “In part 1, they used _______. In part 2, they used _______.”).
 
-In **part 1**, they most likely used a simple **linear regression** ($H_0$: precipitation does not predict flooded wetland area; $H_A$: precipitation does flooded wetland area) because the statement asks whether precipitation predicts flooded wetland area, which is a continuous response variable. In **part 2**, they most likely used a **Kruskal–Wallis rank-sum test** ($H_0$: sample 1 median = sample 2 median = sample 3 median ....; $H_A$: at least 2 sample medians are different form each other), because the statement compares median flooded wetland area across more than two groups of water year classification (wet, above normal, below normal, dry, critical drought).
+In **part 1**, they most likely used a simple **linear regression** ($H_0$: precipitation does not affect flooded wetland area.; $H_A$: precipitation affects flooded wetland area.) because the statement asks whether precipitation predicts flooded wetland area, which is a continuous response variable. In **part 2**, they most likely used a **Kruskal–Wallis rank-sum test** ($H_0$: the median flooded wetland area is the same across all precipitation categories; $H_A$: the median flooded wetland area differs among precipitation categories).
 
 ## b. Figure needed
 
@@ -72,7 +72,7 @@ Note that your co-worker didn’t include any information about the test statist
 
 **Part 1**: Flooded wetland area did not show clear evidence of a relationship with precipitation. The statistical test did not provide sufficient evidence to reject the null hypothesis of no association between precipitation and flooded wetland area (Linear regression, F(degrees freedom (numerator), degrees freedom (denominator)) =  test-statistic (F), $R^2$ = R-squared, p = 0.11, $\alpha$ = significance level).
 
-**Part 2**: Median flooded wetland area did not differ significantly among water year classifications (wet, above normal, below normal, dry, critical drought). The statistical test did not provide sufficient evidence to reject the null hypothesis that median flooded wetland area was the same across all water year classifications (Kruskal–Wallis test, $\chi^2$(degrees of freedom) = test-statistic (H), p = 0.12, $\alpha$ = significance level)
+**Part 2**: Median flooded wetland area did not differ significantly among water year classifications (wet, above normal, below normal, dry, critical drought). The statistical test did not provide sufficient evidence to reject the null hypothesis that median flooded wetland area was the same across all water year classifications (Kruskal–Wallis test, H(degrees of freedom) = test-statistic (H), p = 0.12, $\alpha$ = significance level)
 
 ## d. Interpretation
 
@@ -249,7 +249,7 @@ Make a table of all the models you will need to run. You will run 4 models: a nu
 Your table should have 4 columns: (1) model number, (2) visual obstruction, (3) distance to prairie dog colony, and (4) model description.
 
 | model # | visual obs. | distance to prairie dog colony |model_description             |
-|---------|-------------|--------------------------------| -----------------------------|
+|---------|:-----------:|:------------------------------:|:----------------------------:|
 | 1       | No          | No                             | null model                   |
 | 2       | Yes         | Yes                            | saturated model              | 
 | 3       | Yes         | No                             | visual obstruction only      |
@@ -307,7 +307,7 @@ In text, write what the best model was (i.e. “The best model as determined by 
 
 **Use the predictors and the response variable to describe the model**, not the model number that you assigned.
 
-The best model as determined by Akaike’s Information Criterion (AIC) was the model predicting the probability of Mountain Plover nest site using only the variable `vo_nest` (visual obstruction height). This model had the lowest AIC value (331.77) indicating that visual obstruction alone provided the best balance between model fit and complexity among the candidate models.
+The best model as determined by Akaike’s Information Criterion (AIC) was the model predicting the probability of Mountain Plover nest site use from visual obstruction height at the nest (`vo_nest`). This model had the lowest AIC value (331.77) indicating that visual obstruction alone provided the best balance between model fit and complexity among the candidate models.
 
 ## f. Check the diagnostics
 Check your diagnostics for the model you selected using simulated residuals from the `DHARMa` package.
@@ -377,7 +377,7 @@ ggplot(mopl_clean, # uses cleaned data
 
 Include a figure number, title, description of the figure, and data citation.
 
-**Figure 1. Predicted probability of Mountain Plover nest site use decreases as visual obstruction at the nest increases.** Transparent pink circles (jittered points) represent individual observations of available and used nest sites, plotted as binary outcomes (0 = available, 1 = used) against visual obstruction height at the nest (cm). The dark purple line represents the fitted predicted probability of nest site use from the selected logistic regression model, and the light blue ribbon represents the associated 95% confidence interval around those predictions. Data originally from: Duchardt, Courtney; Beck, Jeffrey; Augustine, David (2020). Data from: Mountain Plover habitat selection and nest survival in relation to weather variability and spatial attributes of Black-tailed Prairie Dog disturbance [Dataset]. Dryad. <https://doi.org/10.5061/dryad.ttdz08kt7>.
+**Figure 1. Predicted probability of Mountain Plover nest site use decreases as visual obstruction height increases.** Transparent pink circles (jittered points) represent individual observations of available and used nest sites, plotted as binary outcomes (0 = available, 1 = used) plotted against visual obstruction height at the nest (cm). TThe dark purple line shows the predicted probability of nest site use from the fitted logistic regression model, and the light blue shaded ribbon represents the associated 95% confidence interval around those predictions. Data originally from: Duchardt, Courtney; Beck, Jeffrey; Augustine, David (2020). Data from: Mountain Plover habitat selection and nest survival in relation to weather variability and spatial attributes of Black-tailed Prairie Dog disturbance [Dataset]. Dryad. <https://doi.org/10.5061/dryad.ttdz08kt7>.
 
 ## i. Calculate model predictions
 
@@ -585,6 +585,6 @@ The linear regression showed a significant positive relationship between sleep e
 
 ## g. Sharing your affective visualization
 
-This is a component you will complete in workshop during week 10. We will be taking attendance that day.
+Completed in workshop during week 10. 
 
 
